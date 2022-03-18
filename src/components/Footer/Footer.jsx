@@ -18,17 +18,17 @@ const Footer = () => {
                     </div>
                     <ul className="shop-links gentle-flex-gap flex-justify-center txt-md">
                         <li>
-                            <a className="link-none" href="#">
+                            <a className="link-none" target="_blank" rel="noreferrer" href="https://youtube.com">
                                 <i className="fab fa-youtube"></i>
                             </a>
                         </li>
                         <li>
-                            <a className="link-none" href="#">
+                            <a className="link-none" target="_blank" rel="noreferrer" href="https://twitter.com">
                                 <i className="fab fa-twitter"></i>
                             </a>
                         </li>
                         <li>
-                            <a className="link-none" href="#">
+                            <a className="link-none" target="_blank" rel="noreferrer" href="https://linkedin.com">
                                 <i className="fab fa-linkedin"></i>
                             </a>
                         </li>
