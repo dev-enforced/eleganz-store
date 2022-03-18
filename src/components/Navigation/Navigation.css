@@ -44,8 +44,6 @@
   color: black;
 }
 
-
-
 @media screen and (max-width: 420px) {
   .main-input-container {
     width: 12rem;

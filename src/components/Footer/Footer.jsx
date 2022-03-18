@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Footer.css";
 const Footer = () => {
     return (
@@ -38,7 +38,7 @@ const Footer = () => {
                     <h3 className="txt-sm">CATEGORIES</h3>
                     <ul className="flex-column flex-align-center">
                         <li className="my-4 category-link">
-                            <Link to="/"  className="link-none"> SKINCARE </Link>
+                            <Link to="/" className="link-none"> SKINCARE </Link>
                         </li>
                         <li className="my-4 category-link">
                             <Link to="/" className="link-none"> CLOTHING </Link>

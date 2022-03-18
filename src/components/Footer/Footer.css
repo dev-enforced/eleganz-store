@@ -1,23 +1,23 @@
 .footer-content-container {
-    background-color: var(--dark-color);
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    color: var(--mid-color);
+  background-color: var(--dark-color);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  color: var(--mid-color);
+}
+
+.shop-details,
+.footer-categories {
+  text-align: center;
+}
+
+.category-link:hover {
+  border-bottom: var(--alert-border-format);
+  border-bottom-color: var(--secondary-hover-color);
+}
+
+@media screen and (max-width: 768px) {
+  .footer-content-container {
+    grid-template-columns: 1fr;
   }
-  
-  .shop-details,
-  .footer-categories {
-    text-align: center;
-  }
-  
-  .category-link:hover {
-    border-bottom: var(--alert-border-format);
-    border-bottom-color: var(--secondary-hover-color);
-  }
-  
-  @media screen and (max-width: 768px) {
-    .footer-content-container {
-      grid-template-columns: 1fr;
-    }
-  }
+}

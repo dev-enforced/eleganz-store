@@ -1,12 +1,12 @@
 import React from "react";
-import { Navigation,Footer } from "./components";
-import {RoutesList} from "./routes/Routes";
+import { Navigation, Footer } from "./components";
+import { RoutesList } from "./routes/Routes";
 function App() {
   return (
     <div className="App">
-      <Navigation/>
-      <RoutesList/>
-      <Footer/>
+      <Navigation />
+      <RoutesList />
+      <Footer />
     </div>
   );
 }

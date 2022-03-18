@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom"
 import { GoSearch, GoHeart } from "react-icons/go";
-import {IoBagOutline} from "react-icons/io5";
+import { IoBagOutline } from "react-icons/io5";
 import "./Navigation.css";
 const Navigation = () => {
     return (
