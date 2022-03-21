@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { Mockbee, MockMan } from "../pages"
+import { Mockbee, MockMan } from "pages"
 const RoutesList = () => {
     return (
         <Routes>

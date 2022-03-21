@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigation, Footer } from "./components";
+import { Navigation, Footer } from "components";
 import { RoutesList } from "./routes/Routes";
 function App() {
   return (
