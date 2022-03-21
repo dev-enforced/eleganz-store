@@ -1,9 +1,10 @@
-import "./MockMan.css";
+import React from "react";
 import Mockman from "mockman-js";
-const MockMan=()=>{
+import "./MockMan.css";
+const MockMan = () => {
     return (
-        <Mockman/>
+        <Mockman />
     )
 }
 
-export {MockMan}
+export { MockMan }

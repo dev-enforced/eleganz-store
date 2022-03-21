@@ -1,13 +1,12 @@
-import { Route, Routes } from "react-router-dom";
-import "./App.css";
-import { Mockbee, MockMan } from "./pages/index";
+import React from "react";
+import { Navigation, Footer } from "components";
+import { RoutesList } from "./routes/Routes";
 function App() {
   return (
     <div className="App">
-      <Routes>
-        <Route path="/mockbee" element={<Mockbee />} />
-        <Route path="/mockman" element={<MockMan />} />
-      </Routes>
+      <Navigation />
+      <RoutesList />
+      <Footer />
     </div>
   );
 }
