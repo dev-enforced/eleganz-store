@@ -125,3 +125,8 @@ body {
 .brand-image {
   height: 4rem;
 }
+
+.flex-start{
+  justify-content: flex-start;
+  align-items:flex-start;
+}
