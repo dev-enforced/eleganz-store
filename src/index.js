@@ -6,7 +6,6 @@ import App from "./App";
 import { ProductProvider } from "context/ProductContext";
 import { makeServer } from "./server";
 
-// Call make Server
 makeServer();
 
 ReactDOM.render(
