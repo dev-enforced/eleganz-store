@@ -27,12 +27,12 @@ export const categories = [
     _id:uuid(),
     categoryName:"Dresses",
     tagLine:"Discover the inner Diva",
-    imgUrl:"https://i.postimg.cc/QM7F78QZ/PWSU01983-R6-2.jpg"
+    imgUrl:"https://i.postimg.cc/Z5290ByL/PWEX00881-K8-1.jpg"
   },
   {
     _id:uuid(),
     categoryName:"Jackets and Coats",
     tagLine:"Where Fashion Meets Class",
-    imgUrl:"https://i.postimg.cc/QM7F78QZ/PWSU01983-R6-2.jpg"
+    imgUrl:"https://i.postimg.cc/sXRv9kmQ/PMJS02006-O7-1.jpg"
   }
 ];
