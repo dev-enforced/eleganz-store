@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigation, Footer } from "components";
-import { RoutesList } from "./routes/Routes";
+import { RoutesList } from "routes/Routes";
 function App() {
   return (
     <div className="App">

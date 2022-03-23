@@ -8,20 +8,31 @@ import { v4 as uuid } from "uuid";
 export const categories = [
   {
     _id: uuid(),
-    categoryName: "fiction",
-    description:
-      "literature in the form of prose, especially novels, that describes imaginary events and people",
+    categoryName: "Tshirts",
+    tagLine: "WEAR YOUR BEST MOMENTS",
+    imgUrl: "https://i.postimg.cc/NM3jBk6m/staple-6pack-1024x1024.jpg"
   },
   {
     _id: uuid(),
-    categoryName: "non-fiction",
-    description:
-      "Non-fiction is writing that gives information or describes real events, rather than telling a story.",
+    categoryName: "Casual Pants",
+    tagLine: "Simple Yet Elegant",
+    imgUrl: "https://i.postimg.cc/QMMtbtN9/2020-New-Men-s-Cotton-Linen-Pants-Male-Summer-Breathable-Solid-Color-Linen-Trousers-Fitness-Streetwe.webp"
+  },{
+    _id: uuid(),
+    categoryName: "Shirts",
+    tagLine:"LET YOUR OUTFIT SHOW YOUR SUCCESS",
+    imgUrl:"https://i.postimg.cc/QM7F78QZ/PWSU01983-R6-2.jpg"
   },
   {
-    _id: uuid(),
-    categoryName: "horror",
-    description:
-      "Meant to cause discomfort and fear for both the character and readers, horror writers often make use of supernatural and paranormal elements in morbid stories that are sometimes a little too realistic.",
+    _id:uuid(),
+    categoryName:"Dresses",
+    tagLine:"Discover the inner Diva",
+    imgUrl:"https://i.postimg.cc/Z5290ByL/PWEX00881-K8-1.jpg"
   },
+  {
+    _id:uuid(),
+    categoryName:"Jackets and Coats",
+    tagLine:"Where Fashion Meets Class",
+    imgUrl:"https://i.postimg.cc/sXRv9kmQ/PMJS02006-O7-1.jpg"
+  }
 ];

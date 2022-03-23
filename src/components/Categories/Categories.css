@@ -1,0 +1,35 @@
+.title-container{
+    text-align: center;
+    color:var(--mid-color);
+    background-color: var(--dark-color);
+}
+
+.category-container{
+    background-color: var(--dark-color);
+    color: var(--mid-color);
+}
+.category-wrapper{
+    justify-content: space-evenly;
+    width: 68rem;
+}
+
+.category-card{
+    width:20rem;
+    border-radius: var(--border-rd-md);
+    overflow: hidden;
+    box-shadow:0 2px 20px rgba(0,0,0,0.2);  
+    height: 100%;
+}
+
+.category-card:hover{
+    box-shadow: 0 2px 20px var(--brand-color);
+}
+.category-header img{
+    width:100%;
+    object-fit: contain;
+}
+
+.category-content p{
+    font-size:1.2rem;
+    margin:0 0 20px;
+}
