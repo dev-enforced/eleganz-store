@@ -58,7 +58,7 @@ const FilterSidebar = () => {
                         <label htmlFor="men-garments">Men</label>
                     </div>
                     <div className="gentle-flex-gap flex-align-center mx-6">
-                        <input type="radio" id="women-garmnets" name="worn-by" />
+                        <input type="radio" id="women-garments" name="worn-by" />
                         <label htmlFor="women-garments">Women</label>
                     </div>
                 </div>

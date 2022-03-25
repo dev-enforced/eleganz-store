@@ -1,0 +1,8 @@
+.product-display-container {
+  grid-area: product-display;
+  background-color: var(--dark-color);
+}
+
+.gentle-grid-responsive{
+  grid-gap:1.4rem;
+}
