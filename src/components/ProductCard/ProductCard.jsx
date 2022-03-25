@@ -30,8 +30,8 @@ const ProductCard = ({productDetails}) => {
                 <h4 className="txt-bold card-details-title">{title} for {wornBy}</h4>
                 <p className="card-details-subtitle">{brand}</p>
                 <p className="card-pricing">
-                    <span className="card-price">{discountedPrice}</span>
-                    <del className="card-original-price">{originalPrice}</del>
+                    <span className="card-price">₹ {discountedPrice}</span>
+                    <del className="card-original-price">₹ {originalPrice}</del>
                     <span className="card-discount">{discount}% off</span>
                 </p>
             </div>

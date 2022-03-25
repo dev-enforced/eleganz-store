@@ -62,6 +62,17 @@ const FilterSidebar = () => {
                         <label htmlFor="women-garments">Women</label>
                     </div>
                 </div>
+                <div className={`side-nav ${mobileFilterView ? "active" : ""} flex-column pb-3`}>
+                    <h3 className="txt-sm mb-3">RATINGS</h3>
+                    <div className="gentle-flex-gap flex-align-center mx-6">
+                        <input type="radio" id="three-to-four" name="rated-choice" />
+                        <label htmlFor="three-to-four">3 stars - 4 stars</label>
+                    </div>
+                    <div className="gentle-flex-gap flex-align-center mx-6">
+                        <input type="radio" id="four-to-five" name="rated-choice" />
+                        <label htmlFor="four-to-five">4 stars - 5 stars</label>
+                    </div>
+                </div>
             </div>
         </aside>
     )
