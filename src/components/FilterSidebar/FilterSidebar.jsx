@@ -5,7 +5,7 @@ import "./FilterSidebar.css";
 const FilterSidebar = () => {
     const [mobileFilterView, setMobileFilterView] = useState(false);
     const { filterState, filterDispatch } = useProducts();
-    const { sortPriceOrder, gender, categories, startRatings, endRatings } = filterState
+    const { sortPriceOrder, gender, categories, startRatings, endRatings,priceLimit } = filterState
     return (
         <aside className="filter-sidebar-container p-10">
             <div className="filter-sidebar-content gentle-flex-gap flex-column">
@@ -74,6 +74,22 @@ const FilterSidebar = () => {
                     <div className="gentle-flex-gap flex-align-center mx-6">
                         <input type="radio" id="four-to-five" name="rated-choice" checked={startRatings === "4" && endRatings === "5"} onChange={() => { filterDispatch({ type: "RATING-CHOICE", startValue: "4", endValue: "5" }) }} />
                         <label htmlFor="four-to-five">4 stars - 5 stars</label>
+                    </div>
+                </div>
+                <div className={`side-nav ${mobileFilterView ? "active" : ""} flex-column pb-3`}>
+                    <h3 className="txt-sm mb-3">PRICE</h3>
+                    <input className="price-point-viewer" value={priceLimit} onChange={(e)=>filterDispatch({type:"PRICE-SLIDE",payload:e.target.value})} type="range" min="500" step="1000" max="3500" list="price-points" />
+                    <datalist id="price-points">
+                        <option value="500" label="500"></option>
+                        <option value="1500" label="1500"></option>
+                        <option value="2500" label="2500"></option>
+                        <option value="3500" label="3500"></option>
+                    </datalist>
+                    <div className="flex-row flex-space-between-align-center">
+                        <span>500</span>
+                        <span>1500</span>
+                        <span>2500</span>
+                        <span>3500</span>
                     </div>
                 </div>
             </div>

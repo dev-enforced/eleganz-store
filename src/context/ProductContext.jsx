@@ -18,7 +18,8 @@ const ProductProvider = ({ children }) => {
         gender: "",
         categories: [],
         startRatings: "3",
-        endRatings:"5"
+        endRatings: "5",
+        priceLimit: "3500"
     }
 
     const filterReducer = (givenState, action) => {
@@ -54,9 +55,11 @@ const ProductProvider = ({ children }) => {
             case "CLEAR-ALL":
                 return { ...initialFilterState }
             case "RATING-CHOICE":
-                return {...givenState,startRatings:`${action.startValue}`,endRatings:`${action.endValue}`}
+                return { ...givenState, startRatings: `${action.startValue}`, endRatings: `${action.endValue}` }
+            case "PRICE-SLIDE":
+                return { ...givenState, priceLimit: `${action.payload}`}
             default:
-                return givenState
+                return { ...givenState  }
         }
     }
     const [filterState, filterDispatch] = useReducer(filterReducer, initialFilterState);
@@ -86,10 +89,16 @@ const ProductProvider = ({ children }) => {
         }
     }
 
-    const applyRatingsChoice=(givenState,providedProducts)=>{
-        const {startRatings,endRatings}=givenState;
+    const applyRatingsChoice = (givenState, providedProducts) => {
+        const { startRatings, endRatings } = givenState;
         return [...providedProducts].filter((everyProduct) => Number(everyProduct.ratings) >= Number(startRatings) && Number(everyProduct.ratings) <= Number(endRatings))
     }
+
+    const applyPriceChoice = (givenState, providedProducts) => {
+        const { priceLimit } = givenState;
+        return [...providedProducts].filter((everyProduct) => Number(everyProduct.discountedPrice) < Number(priceLimit));
+    }
+
     const cumulativeFilters = (...participatingFilters) => {
         return (givenState, providedProducts) => {
             return participatingFilters.reduce((previousFilterResult, currentFilter) => currentFilter(givenState, previousFilterResult), providedProducts)
@@ -100,7 +109,7 @@ const ProductProvider = ({ children }) => {
     useEffect(() => {
         loadProducts()
     }, [])
-    const newProducts = cumulativeFilters(applySortingChoice, applyGenderChoice, applyCategoryChoice,applyRatingsChoice)(filterState, [...productsDb]);
+    const newProducts = cumulativeFilters(applyPriceChoice, applySortingChoice, applyGenderChoice, applyCategoryChoice, applyRatingsChoice)(filterState, [...productsDb]);
     return (
         <ProductContext.Provider value={{ newProducts, filterState, filterDispatch }}>
             {children}
