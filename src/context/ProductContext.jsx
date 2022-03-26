@@ -1,18 +1,25 @@
 import axios from "axios";
 import React, { createContext, useContext, useEffect, useState, useReducer } from "react";
+import { useSearchParams } from "react-router-dom";
 const ProductContext = createContext();
 const useProducts = () => useContext(ProductContext);
 
 const ProductProvider = ({ children }) => {
     const [productsDb, setProductsDb] = useState([]);
-    const loadProducts = async () => {
+    const [categoriesAvailable, setCategoriesAvailable] = useState([]);
+    const [searchParams] = useSearchParams();
+    const categoryReceived = searchParams.get("categorySelected");
+    const loadProductsAndCategories = async () => {
         try {
-            const { data } = await axios.get("/api/products");
-            setProductsDb(data.products)
+            const { data: productsData } = await axios.get("/api/products");
+            const { data: categoriesData } = await axios.get("/api/categories")
+            setProductsDb(productsData.products);
+            setCategoriesAvailable(categoriesData.categories);
         } catch {
-            console.log("Error")
+            console.log("Error");
         }
     }
+
     const initialFilterState = {
         sortPriceOrder: "",
         gender: "",
@@ -57,9 +64,9 @@ const ProductProvider = ({ children }) => {
             case "RATING-CHOICE":
                 return { ...givenState, startRatings: `${action.startValue}`, endRatings: `${action.endValue}` }
             case "PRICE-SLIDE":
-                return { ...givenState, priceLimit: `${action.payload}`}
+                return { ...givenState, priceLimit: `${action.payload}` }
             default:
-                return { ...givenState  }
+                return { ...givenState }
         }
     }
     const [filterState, filterDispatch] = useReducer(filterReducer, initialFilterState);
@@ -107,11 +114,18 @@ const ProductProvider = ({ children }) => {
 
 
     useEffect(() => {
-        loadProducts()
+        loadProductsAndCategories();
     }, [])
+
+    useEffect(() => {
+        filterDispatch({ type: `${categoryReceived}` })
+        return () => {
+            filterDispatch({ type: "CLEAR-ALL" })
+        }
+    }, [categoryReceived])
     const newProducts = cumulativeFilters(applyPriceChoice, applySortingChoice, applyGenderChoice, applyCategoryChoice, applyRatingsChoice)(filterState, [...productsDb]);
     return (
-        <ProductContext.Provider value={{ newProducts, filterState, filterDispatch }}>
+        <ProductContext.Provider value={{ newProducts, categoriesAvailable, filterState, filterDispatch }}>
             {children}
         </ProductContext.Provider>
     )
