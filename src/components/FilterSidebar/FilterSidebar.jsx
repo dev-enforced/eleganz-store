@@ -5,7 +5,7 @@ import "./FilterSidebar.css";
 const FilterSidebar = () => {
     const [mobileFilterView, setMobileFilterView] = useState(false);
     const { filterState, filterDispatch } = useProducts();
-    const { sortPriceOrder, gender,categories } = filterState
+    const { sortPriceOrder, gender, categories, startRatings, endRatings } = filterState
     return (
         <aside className="filter-sidebar-container p-10">
             <div className="filter-sidebar-content gentle-flex-gap flex-column">
@@ -68,11 +68,11 @@ const FilterSidebar = () => {
                 <div className={`side-nav ${mobileFilterView ? "active" : ""} flex-column pb-3`}>
                     <h3 className="txt-sm mb-3">RATINGS</h3>
                     <div className="gentle-flex-gap flex-align-center mx-6">
-                        <input type="radio" id="three-to-four" name="rated-choice" />
+                        <input type="radio" id="three-to-four" name="rated-choice" checked={startRatings === "3" && endRatings === "4"} onChange={() => { filterDispatch({ type: "RATING-CHOICE", startValue: "3", endValue: "4" }) }} />
                         <label htmlFor="three-to-four">3 stars - 4 stars</label>
                     </div>
                     <div className="gentle-flex-gap flex-align-center mx-6">
-                        <input type="radio" id="four-to-five" name="rated-choice" />
+                        <input type="radio" id="four-to-five" name="rated-choice" checked={startRatings === "4" && endRatings === "5"} onChange={() => { filterDispatch({ type: "RATING-CHOICE", startValue: "4", endValue: "5" }) }} />
                         <label htmlFor="four-to-five">4 stars - 5 stars</label>
                     </div>
                 </div>
