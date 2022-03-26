@@ -1,0 +1,35 @@
+.filter-sidebar-container{
+  background-color: var(--dark-color);
+  grid-area:filter-sidebar;
+}
+.filter-sidebar-content{
+  color:var(--light-color);
+}
+.mobile-view-filter-button{
+  display: none;
+}
+.clear-filter{
+  cursor: pointer;
+}
+.clear-filter:hover{
+  text-decoration: underline;
+}
+
+.side-nav-header,.side-nav{
+  border-bottom:var(--alert-border-format);
+  border-bottom-color:var(--mid-color) ;
+}
+
+@media screen and (max-width:768px) {
+    .mobile-view-filter-button{
+      display: block;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .side-nav{
+      display: none;
+    }
+    .side-nav.active{
+      display: flex;
+    }
+}
