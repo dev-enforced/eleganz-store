@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { createContext, useContext, useEffect, useState, useReducer } from "react";
 import { useSearchParams } from "react-router-dom";
 import { initialFilterState, filterReducer } from "reducers/filter-reducer";
@@ -15,9 +16,9 @@ const ProductProvider = ({ children }) => {
 
     useEffect(() => {
         const productAndCategoryAPIResponse = loadProductsAndCategories();
-        productAndCategoryAPIResponse.then((response) => {
-            setProductsDb(response[0].products);
-            setCategoriesAvailable(response[1].categories)
+        productAndCategoryAPIResponse.then((data) => {
+            setProductsDb(data[0].products)
+            setCategoriesAvailable(data[1].categories)
         })
     }, [])
 
