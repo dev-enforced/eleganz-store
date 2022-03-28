@@ -5,7 +5,7 @@ import "./FilterSidebar.css";
 const FilterSidebar = () => {
     const [mobileFilterView, setMobileFilterView] = useState(false);
     const { filterState, filterDispatch } = useProducts();
-    const { sortPriceOrder, gender, categories, startRatings, endRatings,priceLimit } = filterState
+    const { sortPriceOrder, gender, categories, startRatings, endRatings, priceLimit } = filterState
     return (
         <aside className="filter-sidebar-container p-10">
             <div className="filter-sidebar-content gentle-flex-gap flex-column">
@@ -78,7 +78,7 @@ const FilterSidebar = () => {
                 </div>
                 <div className={`side-nav ${mobileFilterView ? "active" : ""} flex-column pb-3`}>
                     <h3 className="txt-sm mb-3">PRICE</h3>
-                    <input className="price-point-viewer" value={priceLimit} onChange={(e)=>filterDispatch({type:"PRICE-SLIDE",payload:e.target.value})} type="range" min="500" step="1000" max="3500" list="price-points" />
+                    <input className="price-point-viewer" value={priceLimit} onChange={(e) => filterDispatch({ type: "PRICE-SLIDE", payload: e.target.value })} type="range" min="500" step="1000" max="3500" list="price-points" />
                     <datalist id="price-points">
                         <option value="500" label="500"></option>
                         <option value="1500" label="1500"></option>

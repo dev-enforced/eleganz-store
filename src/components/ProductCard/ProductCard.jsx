@@ -1,17 +1,17 @@
 import React from "react";
 import "./ProductCard.css";
-import {IoCartOutline as CartOutline,IoHeartOutline as HeartOutline} from 'react-icons/io5';
+import { IoCartOutline as CartOutline, IoHeartOutline as HeartOutline } from 'react-icons/io5';
 
-const ProductCard = ({productDetails}) => {
+const ProductCard = ({ productDetails }) => {
 
-    
+
     // eslint-disable-next-line no-unused-vars
-    const {_id,title,categoryName,imgUrl,ratings,originalPrice,discountedPrice,discount,brand,inStock,wornBy}=productDetails
-    return (      
-        <div key={_id} className={`card card-vertical ${!inStock?"card-overlay":""}`}>
-            {!inStock?<div className="overlay-text-container">
+    const { _id, title, categoryName, imgUrl, ratings, originalPrice, discountedPrice, discount, brand, inStock, wornBy } = productDetails
+    return (
+        <div key={_id} className={`card card-vertical ${!inStock ? "card-overlay" : ""}`}>
+            {!inStock ? <div className="overlay-text-container">
                 <div className="card-overlay-text">OUT OF STOCK</div>
-            </div>:null}
+            </div> : null}
 
             <div className="card-header">
                 <div className="badge-content">
@@ -38,9 +38,9 @@ const ProductCard = ({productDetails}) => {
 
             <div className="card-actions">
                 <button className="btn btn-warning btn-warning-hover gentle-flex-gap flex-align-center">
-                    ADD TO CART <CartOutline/>
+                    ADD TO CART <CartOutline />
                 </button>
-                <button className="btn btn-primary btn-primary-hover gentle-flex-gap flex-align-center">ADD TO WISHLIST <HeartOutline/></button>
+                <button className="btn btn-primary btn-primary-hover gentle-flex-gap flex-align-center">ADD TO WISHLIST <HeartOutline /></button>
             </div>
         </div>
 

@@ -11,7 +11,7 @@ const ProductList = () => {
                 <div className="gentle-grid-responsive py-8">
                     {newProducts.map((everyItem) => {
                         return (
-                            <ProductCard key={everyItem._id} productDetails={everyItem}/>
+                            <ProductCard key={everyItem._id} productDetails={everyItem} />
                         )
                     })}
                 </div>

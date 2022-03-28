@@ -1,15 +1,15 @@
-.product-page-layout{
-    display:grid;
-    grid-template-columns: 1.2fr 3.6fr;
-    grid-template-areas:
+.product-page-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 3.6fr;
+  grid-template-areas:
     "filter-sidebar product-display"
     "filter-sidebar product-display";
 }
-@media screen and (max-width:768px){
-    .product-page-layout{
-        grid-template-columns: 1fr;
-        grid-template-areas: 
-        "filter-sidebar"
-        "product-display";
-    }
+@media screen and (max-width: 768px) {
+  .product-page-layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "filter-sidebar"
+      "product-display";
+  }
 }

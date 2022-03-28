@@ -48,4 +48,4 @@ const filterReducer = (givenState, action) => {
     }
 }
 
-export {filterReducer,initialFilterState};
+export { filterReducer, initialFilterState };
