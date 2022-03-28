@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { createContext, useContext, useEffect, useState, useReducer } from "react";
 import { useSearchParams } from "react-router-dom";
 import { initialFilterState, filterReducer } from "reducers/filter-reducer";

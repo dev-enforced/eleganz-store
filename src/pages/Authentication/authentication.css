@@ -1,0 +1,57 @@
+.main-content {
+  flex-grow: 1;
+  height: 100vh;
+  background-color: var(--bg-color);
+}
+
+.main-content-container {
+  width: 40rem;
+  background-color: #d1e4eb;
+  box-shadow: 5px 10px 13px -7px #000000;
+  border: var(--alert-border-format);
+  gap: 3rem;
+}
+
+.footer-component {
+  grid-area: footer;
+}
+
+.submit-btn {
+  width: 100%;
+}
+
+.permission-check {
+  gap: 0.2rem;
+}
+
+.checkbox-input-container {
+  gap: 0.1rem;
+  font-size: 1.7rem;
+}
+
+.gentle-input-label {
+  font-size: 1.3rem;
+}
+
+.checkbox-input {
+  width: 1.4rem;
+  height: 1.4rem;
+  accent-color: var(--primary-color);
+}
+
+.btn-link {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 11px;
+  }
+  .main-content-container {
+    width: 30rem;
+  }
+  .name-taker {
+    flex-direction: column;
+  }
+}
