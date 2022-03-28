@@ -20,6 +20,12 @@
   border-bottom-color:var(--mid-color) ;
 }
 
+.price-point-viewer{
+  width: 100%;
+  accent-color: var(--mid-color);
+}
+
+
 @media screen and (max-width:768px) {
     .mobile-view-filter-button{
       display: block;

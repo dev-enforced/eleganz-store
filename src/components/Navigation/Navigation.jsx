@@ -9,7 +9,9 @@ const Navigation = () => {
             <div className="main-container gentle-flex-gap flex-align-center flex-wrap">
                 <div className="main-image-and-input-container gentle-flex-gap flex-align-center flex-wrap">
                     <div className="main-image-container">
-                        <img src="./assets/eleganz-logo.png" alt="Eleganz Logo" className="brand-image" />
+                        <Link to="/">
+                            <img src="./assets/eleganz-logo.png" alt="Eleganz Logo" className="brand-image" />
+                        </Link>
                     </div>
                     <form className="main-input-container">
                         <GoSearch className="search-icon" />

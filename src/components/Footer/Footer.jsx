@@ -1,17 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useProducts } from "context/ProductContext";
 import "./Footer.css";
 const Footer = () => {
+    const { filterDispatch } = useProducts()
+    const navigate = useNavigate();
     return (
         <footer>
             <div className="footer-content-container p-8">
                 <div className="shop-details">
                     <div>
-                        <img
-                            src="./assets/eleganz-logo.png"
-                            alt="Eleganz Store"
-                            className="brand-image"
-                        />
+                        <Link to="/">
+                            <img
+                                src="./assets/eleganz-logo.png"
+                                alt="Eleganz Store"
+                                className="brand-image"
+                            />
+                        </Link>
+
                         <p className="txt-sm">
                             Shipping nature friendly products for your kids to your doorstep
                         </p>
@@ -37,33 +43,46 @@ const Footer = () => {
                 <div className="footer-categories">
                     <h3 className="txt-sm">CATEGORIES</h3>
                     <ul className="flex-column flex-align-center">
-                        <li className="my-4 category-link">
-                            <Link to="/" className="link-none"> SKINCARE </Link>
+                        <li className="my-4 category-link text-cursor-pointer" onClick={() => {
+                            filterDispatch({ type: "CLEAR-ALL" });
+                            filterDispatch({ type: "JACKETS" });
+                            navigate("/products");
+                        }}>
+                            JACKETS
                         </li>
-                        <li className="my-4 category-link">
-                            <Link to="/" className="link-none"> CLOTHING </Link>
+                        <li className="my-4 category-link text-cursor-pointer" onClick={() => {
+                            filterDispatch({ type: "CLEAR-ALL" });
+                            filterDispatch({ type: "DRESSES" });
+                            navigate("/products");
+                        }}>
+                            DRESSES
                         </li>
-                        <li className="my-4 category-link">
-                            <Link to="/" className="link-none"> MEALTIME </Link>
+                        <li className="my-4 category-link text-cursor-pointer" onClick={() => {
+                            filterDispatch({ type: "CLEAR-ALL" });
+                            filterDispatch({ type: "TSHIRTS" });
+                            navigate("/products");
+                        }}>
+                            TSHIRTS
                         </li>
                     </ul>
                 </div>
 
                 <div className="footer-categories">
-                    <h3 className="txt-sm">ACCOUNT</h3>
+                    <h3 className="txt-sm">WEARABLES FOR</h3>
                     <ul className="flex-column flex-align-center">
-                        <li className="my-4 category-link">
-                            <Link to="/" className="link-none"> WISHLIST </Link>
+                        <li className="my-4 category-link text-cursor-pointer" onClick={() => {
+                            filterDispatch({ type: "CLEAR-ALL" });
+                            filterDispatch({ type: "MEN" });
+                            navigate("/products");
+                        }}>
+                            MEN
                         </li>
-                        <li className="my-4 category-link">
-                            <Link to="/" className="link-none">
-                                VIEW CART
-                            </Link>
-                        </li>
-                        <li className="my-4 category-link">
-                            <Link to="/" className="link-none">
-                                LOGIN/SIGNUP
-                            </Link>
+                        <li className="my-4 category-link text-cursor-pointer" onClick={() => {
+                            filterDispatch({ type: "CLEAR-ALL" });
+                            filterDispatch({ type: "WOMEN" });
+                            navigate("/products");
+                        }}>
+                            WOMEN
                         </li>
                     </ul>
                 </div>
