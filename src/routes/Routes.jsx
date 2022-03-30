@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { Mockbee, MockMan, Home, ProductDisplay, SignIn, SignUp } from "pages";
+import { Mockbee, MockMan, Home, ProductDisplay, SignIn, SignUp, Cart, Wishlist } from "pages";
+import { ProtectedRoutes } from "./ProtectedRoutes";
 
 const RoutesList = () => {
     return (
@@ -11,6 +12,8 @@ const RoutesList = () => {
             <Route path="/mockman" element={<MockMan />} />
             <Route path="/signin" element={<SignIn />}></Route>
             <Route path="/signup" element={<SignUp />}></Route>
+            <Route path="/cart" element={<ProtectedRoutes specificPart={<Cart />}></ProtectedRoutes>}></Route>
+            <Route path="/wishlist" element={<ProtectedRoutes specificPart={<Wishlist />}></ProtectedRoutes>}></Route>
         </Routes>
     )
 }

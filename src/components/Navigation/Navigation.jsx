@@ -33,13 +33,13 @@ const Navigation = () => {
                         <Link to="/signin" className="link-none text-link" >
                             LOGIN
                         </Link>}
-                    <Link to="/mockman" className="badge mx-2">
+                    <Link to="/wishlist" className="badge mx-2">
                         <GoHeart className="icon-link link-none" />
                         <div className="badge-number gentle-flex-center">
                             <span>4</span>
                         </div>
                     </Link>
-                    <Link to="/mockman" className="badge mx-2">
+                    <Link to="/cart" className="badge mx-2">
                         <IoBagOutline className="icon-link link-none" />
                         <div className="badge-number gentle-flex-center">
                             <span>4</span>
