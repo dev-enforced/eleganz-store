@@ -12,6 +12,8 @@ const authReducer = (authStateProvided, authAction) => {
             return { ...initialAuthState }
         case "SIGN-UP":
             return { ...authStateProvided, ...payload.createdUser, authenticationToken: payload.encodedToken, signinStatus: true }
+        default:
+            return { ...authStateProvided }
     }
 }
-export {initialAuthState,authReducer}
+export { initialAuthState, authReducer }
