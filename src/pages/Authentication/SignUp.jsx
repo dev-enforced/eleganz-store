@@ -1,50 +1,27 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { FaChevronRight } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthentication } from 'context';
 import "./authentication.css";
+import { initialSignupData } from 'constants';
+import { signupHandler } from 'services';
 
 const SignUp = () => {
     const navigate = useNavigate();
     const { authDispatch } = useAuthentication();
-    const initialSignupData = {
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: ""
-    }
     const [signupData, setSignupData] = useState(initialSignupData);
     const signupDataHandler = (e) => {
         const { name, value } = e.target;
         setSignupData(prevSignupData => ({ ...prevSignupData, [name]: value }))
     }
 
-    const signupHandler = (e) => {
-        e.preventDefault();
-        (async () => {
-            try {
-                const { data, status } = await axios.post("/api/auth/signup", {
-                    ...signupData
-                })
-                if (status === 201) {
-                    authDispatch({ type: "SIGN-UP", payload: data })
-                    localStorage.setItem("authenticationToken", data.encodedToken);
-                    navigate("/products")
-                }
-            } catch {
-                console.error("SIGN UP NOT POSSIBLE")
-            }
-
-        })()
-    }
     return (
         <section className="main-content flex-column flex-center">
             <div className="main-content-container flex-column flex-center p-10">
                 <div className="form-name">
                     <h3>SIGNUP</h3>
                 </div>
-                <form className="gentle-form-group gentle-flex-gap txt-sm" onSubmit={signupHandler}>
+                <form className="gentle-form-group gentle-flex-gap txt-sm" onSubmit={(e)=>{signupHandler(e,signupData,authDispatch,navigate)}}>
                     <div className="gentle-flex-gap name-taker flex-wrap">
                         <div className="gentle-input-group">
                             <label className="gentle-input-label" htmlFor="user-first-name">First Name</label>

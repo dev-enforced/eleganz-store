@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useEffect, useState, useReducer } from "react";
 import { useSearchParams } from "react-router-dom";
-import { initialFilterState, filterReducer } from "reducers/filter-reducer";
+import { initialFilterState, filterReducer } from "reducers";
 import { cumulativeFilters, applyCategoryChoice, applyPriceChoice, applyRatingsChoice, applyGenderChoice, applySortingChoice } from "utilities/filterUtilities"
-import { loadProductsAndCategories } from "services/Products/getProductsAndCategories";
+import { loadProductsAndCategories } from "services";
 const ProductContext = createContext();
 const useProducts = () => useContext(ProductContext);
 

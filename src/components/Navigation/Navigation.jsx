@@ -2,8 +2,10 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom"
 import { GoSearch, GoHeart } from "react-icons/go";
 import { IoBagOutline } from "react-icons/io5";
-import "./Navigation.css";
 import { useAuthentication } from "context";
+import { signOutService } from "services";
+import "./Navigation.css";
+
 const Navigation = () => {
     const navigate = useNavigate();
     const { authState, authDispatch } = useAuthentication();
@@ -24,9 +26,7 @@ const Navigation = () => {
                 </div>
                 <div className="main-links gentle-flex-gap flex-center flex-wrap">
                     {signinStatus ? <button onClick={() => {
-                        authDispatch({ type: "SIGN-OUT" })
-                        localStorage.removeItem("authenticationToken");
-                        navigate("/");
+                        signOutService(authDispatch, navigate)
                     }} className="link-none text-link" >
                         LOGOUT
                     </button> :
