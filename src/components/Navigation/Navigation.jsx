@@ -1,9 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { GoSearch, GoHeart } from "react-icons/go";
 import { IoBagOutline } from "react-icons/io5";
 import "./Navigation.css";
+import { useAuthentication } from "context";
 const Navigation = () => {
+    const navigate = useNavigate();
+    const { authState, authDispatch } = useAuthentication();
+    const { signinStatus } = authState;
     return (
         <nav className="main-nav-wrapper">
             <div className="main-container gentle-flex-gap flex-align-center flex-wrap">
@@ -19,9 +23,16 @@ const Navigation = () => {
                     </form>
                 </div>
                 <div className="main-links gentle-flex-gap flex-center flex-wrap">
-                    <Link to="/mockbee" className="link-none text-link" >
-                        LOGIN
-                    </Link>
+                    {signinStatus ? <button onClick={() => {
+                        authDispatch({ type: "SIGN-OUT" })
+                        localStorage.removeItem("authenticationToken");
+                        navigate("/");
+                    }} className="link-none text-link" >
+                        LOGOUT
+                    </button> :
+                        <Link to="/signin" className="link-none text-link" >
+                            LOGIN
+                        </Link>}
                     <Link to="/mockman" className="badge mx-2">
                         <GoHeart className="icon-link link-none" />
                         <div className="badge-number gentle-flex-center">

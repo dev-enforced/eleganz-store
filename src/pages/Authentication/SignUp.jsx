@@ -1,14 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { FaChevronRight } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuthentication } from 'context';
 import "./authentication.css";
 
 const SignUp = () => {
+    const navigate = useNavigate();
+    const { authDispatch } = useAuthentication();
+    const initialSignupData = {
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: ""
+    }
+    const [signupData, setSignupData] = useState(initialSignupData);
+    const signupDataHandler = (e) => {
+        const { name, value } = e.target;
+        setSignupData(prevSignupData => ({ ...prevSignupData, [name]: value }))
+    }
+
+    const signupHandler = (e) => {
+        e.preventDefault();
+        (async () => {
+            try {
+                const { data, status } = await axios.post("/api/auth/signup", {
+                    ...signupData
+                })
+                if (status === 201) {
+                    authDispatch({ type: "SIGN-UP", payload: data })
+                    localStorage.setItem("authenticationToken", data.encodedToken);
+                    navigate("/products")
+                }
+            } catch {
+                console.error("SIGN UP NOT POSSIBLE")
+            }
+
+        })()
+    }
     return (
         <section className="main-content flex-column flex-center">
             <div className="main-content-container flex-column flex-center p-10">
                 <div className="form-name">
                     <h3>SIGNUP</h3>
                 </div>
-                <form className="gentle-form-group gentle-flex-gap txt-sm">
+                <form className="gentle-form-group gentle-flex-gap txt-sm" onSubmit={signupHandler}>
                     <div className="gentle-flex-gap name-taker flex-wrap">
                         <div className="gentle-input-group">
                             <label className="gentle-input-label" htmlFor="user-first-name">First Name</label>
@@ -16,7 +52,10 @@ const SignUp = () => {
                                 type="text"
                                 className="gentle-input"
                                 id="user-first-name"
+                                name="firstName"
                                 placeholder="e.g. Ashok"
+                                onChange={signupDataHandler}
+                                required
                             />
                         </div>
                         <div className="gentle-input-group">
@@ -25,7 +64,10 @@ const SignUp = () => {
                                 type="text"
                                 className="gentle-input"
                                 id="user-last-name"
+                                name="lastName"
                                 placeholder="e.g. Kamte"
+                                onChange={signupDataHandler}
+                                required
                             />
                         </div>
                     </div>
@@ -33,18 +75,24 @@ const SignUp = () => {
                         <label className="gentle-input-label" htmlFor="user-email-address">Email Address</label>
                         <input
                             type="email"
+                            name="email"
                             className="gentle-input"
                             id="user-email-address"
+                            onChange={signupDataHandler}
                             placeholder="e.g. ashok_kamte@rediff.com"
+                            required
                         />
                     </div>
                     <div className="gentle-input-group">
                         <label className="gentle-input-label" htmlFor="user-password">Password</label>
                         <input
                             type="password"
+                            name="password"
                             className="gentle-input"
                             id="user-password"
                             placeholder="******"
+                            required
+                            onChange={signupDataHandler}
                         />
                     </div>
                     <div className="permission-check gentle-flex-gap flex-wrap">
@@ -70,10 +118,10 @@ const SignUp = () => {
                         >
                             CREATE NEW ACCOUNT
                         </button>
-                        <a href="auth-login.html" className="link-none btn btn-link"
-                        >Already have an Account? Login
-                            <i className="fas fa-chevron-right px-1"></i>
-                        </a>
+                        <Link to="/signin" className="link-none btn btn-link gentle-flex flex-align-center">
+                            Already have an Account? Sign In
+                            <FaChevronRight />
+                        </Link>
 
                     </div>
                 </form>

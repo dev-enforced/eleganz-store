@@ -9,7 +9,7 @@ const RoutesList = () => {
             <Route path="/products" element={<ProductDisplay />} />
             <Route path="/mockbee" element={<Mockbee />} />
             <Route path="/mockman" element={<MockMan />} />
-            <Route path="/login" element={<SignIn />}></Route>
+            <Route path="/signin" element={<SignIn />}></Route>
             <Route path="/signup" element={<SignUp />}></Route>
         </Routes>
     )
