@@ -1,0 +1,1 @@
+export { loadProductsAndCategories } from "./getProductsAndCategories";

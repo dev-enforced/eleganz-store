@@ -39,4 +39,4 @@ const cumulativeFilters = (...participatingFilters) => {
     }
 }
 
-export {cumulativeFilters,applyCategoryChoice,applyPriceChoice,applyRatingsChoice,applyGenderChoice,applySortingChoice};
+export { cumulativeFilters, applyCategoryChoice, applyPriceChoice, applyRatingsChoice, applyGenderChoice, applySortingChoice };
