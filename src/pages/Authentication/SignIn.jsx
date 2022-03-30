@@ -64,7 +64,7 @@ const SignIn = () => {
                             <span>Remember Me</span>
                         </label>
                         <div className="forget-password">
-                            <a href="#" className="link-none"> Forgot Password? </a>
+                            <Link to="/" className="link-none"> Forgot Password? </Link>
                         </div>
                     </div>
                     <div
