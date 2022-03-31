@@ -12,6 +12,18 @@
     gap: 2rem;
 }
 
+/* FILLED CART CONTAINER */
+
+.filled-cart-content {
+    flex-grow: 1;
+    background-color: var(--bg-color);
+}
+
+.cart-summary-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;  
+}
+
 @media screen and (max-width:768px) {
     html {
         font-size: 12px;
@@ -19,5 +31,10 @@
     
     .cart-info-container {
         width: 30rem;
+    }
+
+    .cart-summary-container{
+        grid-template-columns: 1fr;
+        justify-items: center;
     }
 }

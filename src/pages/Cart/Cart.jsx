@@ -5,7 +5,7 @@ import "./Cart.css";
 import { FilledCart } from './FilledCart';
 const Cart = () => {
   return (
-    5 > 3 ?
+    5 < 3 ?
       <EmptyCart />
       : <FilledCart />
   )

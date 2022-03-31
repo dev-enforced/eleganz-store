@@ -1,8 +1,8 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Cart.css";
 
-const EmptyCart=()=>{
+const EmptyCart = () => {
     return (
         <section className="empty-cart-content flex-column flex-center">
             <div className="cart-info-container flex-column flex-justify-center p-10">
@@ -20,4 +20,4 @@ const EmptyCart=()=>{
         </section>
     )
 }
-export {EmptyCart}
+export { EmptyCart }
