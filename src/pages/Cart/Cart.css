@@ -1,0 +1,23 @@
+/* EMPTY CART SECTION */
+.empty-cart-content{
+    flex-grow:1;
+    height: 85vh;
+    background-color: var(--bg-color);
+}
+
+.cart-info-container {
+    width: 40rem;
+    background-color: transparent;
+    border: var(--alert-border-format);
+    gap: 2rem;
+}
+
+@media screen and (max-width:768px) {
+    html {
+        font-size: 12px;
+    }
+    
+    .cart-info-container {
+        width: 30rem;
+    }
+}
