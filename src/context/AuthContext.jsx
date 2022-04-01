@@ -5,7 +5,6 @@ const useAuthentication = () => useContext(AuthenticationContext);
 
 const AuthProvider = ({ children }) => {
     const [authState, authDispatch] = useReducer(authReducer, initialAuthState);
-    console.log("From auth context:",authState);
     return (
         <AuthenticationContext.Provider value={{ authState, authDispatch }}>
             {children}

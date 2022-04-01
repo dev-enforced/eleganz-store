@@ -9,7 +9,7 @@ import "./Navigation.css";
 const Navigation = () => {
     const navigate = useNavigate();
     const { authState, authDispatch } = useAuthentication();
-    const { signinStatus } = authState;
+    const { signinStatus, cart } = authState;
     return (
         <nav className="main-nav-wrapper">
             <div className="main-container gentle-flex-gap flex-align-center flex-wrap">
@@ -33,14 +33,15 @@ const Navigation = () => {
                         <Link to="/signin" className="link-none text-link" >
                             LOGIN
                         </Link>}
-                    <Link to="/wishlist" className="badge mx-2">
-                        <GoHeart className="icon-link link-none" />
-                        <div className="badge-number gentle-flex-center">
-                            <span>4</span>
-                        </div>
-                    </Link>
                     <Link to="/cart" className="badge mx-2">
                         <IoBagOutline className="icon-link link-none" />
+                        {signinStatus && cart.length > 0 ?
+                            <div className="badge-number gentle-flex-center">
+                                <span>{cart.length}</span>
+                            </div> : ""}
+                    </Link>
+                    <Link to="/wishlist" className="badge mx-2">
+                        <GoHeart className="icon-link link-none" />
                         <div className="badge-number gentle-flex-center">
                             <span>4</span>
                         </div>

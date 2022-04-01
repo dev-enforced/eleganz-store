@@ -1,6 +1,8 @@
 const initialAuthState = {
     signinStatus: false,
-    authenticationToken: ""
+    authenticationToken: "",
+    cart: [],
+    wishlist: []
 }
 
 const authReducer = (authStateProvided, authAction) => {
@@ -12,6 +14,8 @@ const authReducer = (authStateProvided, authAction) => {
             return { ...initialAuthState }
         case "SIGN-UP":
             return { ...authStateProvided, ...payload.createdUser, authenticationToken: payload.encodedToken, signinStatus: true }
+        case "ADD-TO-CART":
+            return { ...authStateProvided, cart: payload }
         default:
             return { ...authStateProvided }
     }

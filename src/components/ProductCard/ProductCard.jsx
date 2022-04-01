@@ -1,11 +1,16 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./ProductCard.css";
 import { IoCartOutline as CartOutline, IoHeartOutline as HeartOutline } from 'react-icons/io5';
+import { useAuthentication } from "context";
+import axios from "axios";
+import { addToCart } from "services";
 
 const ProductCard = ({ productDetails }) => {
-
-
-    // eslint-disable-next-line no-unused-vars
+    const navigate = useNavigate();
+    const { authState, authDispatch } = useAuthentication();
+    const { signinStatus, cart, wishlist } = authState;
     const { _id, title, categoryName, imgUrl, ratings, originalPrice, discountedPrice, discount, brand, inStock, wornBy } = productDetails
     return (
         <div key={_id} className={`card card-vertical ${!inStock ? "card-overlay" : ""}`}>
@@ -22,7 +27,7 @@ const ProductCard = ({ productDetails }) => {
             <img
                 loading="lazy"
                 src={imgUrl}
-                alt={title}
+                alt={categoryName}
                 className="card-media-img"
             />
 
@@ -37,9 +42,23 @@ const ProductCard = ({ productDetails }) => {
             </div>
 
             <div className="card-actions">
-                <button className="btn btn-warning btn-warning-hover gentle-flex-gap flex-align-center">
-                    ADD TO CART <CartOutline />
-                </button>
+                {
+                    cart.some((everyCartItem) => everyCartItem._id === _id) ?
+                        <Link to="/cart" className="link-none btn btn-warning btn-warning-hover gentle-flex-gap flex-align-center" >
+                            GO TO CART <CartOutline />
+                        </Link> :
+                        <button className="btn btn-warning btn-warning-hover gentle-flex-gap flex-align-center"
+                            onClick={() => {
+                                if (signinStatus) {
+                                    addToCart(authState, authDispatch, productDetails);
+                                } else {
+                                    navigate("/signin");
+                                }
+                            }}
+                        >
+                            ADD TO CART <CartOutline />
+                        </button>
+                }
                 <button className="btn btn-primary btn-primary-hover gentle-flex-gap flex-align-center">ADD TO WISHLIST <HeartOutline /></button>
             </div>
         </div>

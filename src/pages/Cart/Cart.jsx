@@ -1,13 +1,20 @@
 /* eslint-disable no-constant-condition */
 import React from 'react';
 import { EmptyCart } from './EmptyCart';
-import "./Cart.css";
 import { FilledCart } from './FilledCart';
+import { useAuthentication } from 'context';
+import "./Cart.css";
+
 const Cart = () => {
+  const { authState: { cart } } = useAuthentication()
   return (
-    5 < 3 ?
-      <EmptyCart />
-      : <FilledCart />
+    <>
+      {
+        cart.length === 0 ?
+          <EmptyCart />
+          : <FilledCart />
+      }
+    </>
   )
 }
 
