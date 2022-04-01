@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { useAuthentication } from 'context';
 import React from 'react';
 import "./CartPriceDetails.css";

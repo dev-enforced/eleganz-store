@@ -1,4 +1,3 @@
-/* eslint-disable no-constant-condition */
 import React from 'react';
 import { EmptyCart } from './EmptyCart';
 import { FilledCart } from './FilledCart';

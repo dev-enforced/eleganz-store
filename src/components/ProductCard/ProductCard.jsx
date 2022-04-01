@@ -1,16 +1,14 @@
-/* eslint-disable no-unused-vars */
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./ProductCard.css";
 import { IoCartOutline as CartOutline, IoHeartOutline as HeartOutline } from 'react-icons/io5';
 import { useAuthentication } from "context";
-import axios from "axios";
 import { addToCart } from "services";
 
 const ProductCard = ({ productDetails }) => {
     const navigate = useNavigate();
     const { authState, authDispatch } = useAuthentication();
-    const { signinStatus, cart, wishlist } = authState;
+    const { signinStatus, cart } = authState;
     const { _id, title, categoryName, imgUrl, ratings, originalPrice, discountedPrice, discount, brand, inStock, wornBy } = productDetails
     return (
         <div key={_id} className={`card card-vertical ${!inStock ? "card-overlay" : ""}`}>
