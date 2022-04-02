@@ -1,8 +1,16 @@
-import React from 'react'
-
+/* eslint-disable no-constant-condition */
+import React from 'react';
+import { EmptyWishlist } from './EmptyWishlist';
+import { FilledWishlist } from './FilledWishlist';
 const Wishlist = () => {
     return (
-        <div>Wishlist</div>
+        <>
+            {
+                5 > 3 ?
+                    <EmptyWishlist /> :
+                    <FilledWishlist />
+            }
+        </>
     )
 }
 

@@ -1,0 +1,15 @@
+/* EMPTY WISHLIST CONTENT */
+.empty-wishlist-content {
+    flex-grow: 1;
+    height: 85vh;
+    background-color: var(--bg-color);
+}
+
+.wishlist-info-container {
+    width: 40rem;
+    background-color: transparent;
+    border: var(--alert-border-format);
+    gap: 2rem;
+}
+
+/* FILLED WISHLIST SECTION */
