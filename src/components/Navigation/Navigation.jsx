@@ -1,15 +1,13 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom"
-import { GoSearch, GoHeart } from "react-icons/go";
-import { IoBagOutline } from "react-icons/io5";
 import { useAuthentication } from "context";
 import { signOutService } from "services";
 import "./Navigation.css";
-
+import { Search, CartIcon, WishlistIcon } from "constants";
 const Navigation = () => {
     const navigate = useNavigate();
     const { authState, authDispatch } = useAuthentication();
-    const { signinStatus, cart } = authState;
+    const { signinStatus, cart, wishlist } = authState;
     return (
         <nav className="main-nav-wrapper">
             <div className="main-container gentle-flex-gap flex-align-center flex-wrap">
@@ -20,7 +18,7 @@ const Navigation = () => {
                         </Link>
                     </div>
                     <form className="main-input-container">
-                        <GoSearch className="search-icon" />
+                        <Search className="search-icon" />
                         <input type="text" placeholder="SEARCH FOR PRODUCTS" className="search-input" />
                     </form>
                 </div>
@@ -34,17 +32,18 @@ const Navigation = () => {
                             LOGIN
                         </Link>}
                     <Link to="/cart" className="badge mx-2">
-                        <IoBagOutline className="icon-link link-none" />
+                        <CartIcon className="icon-link link-none" />
                         {signinStatus && cart.length > 0 ?
                             <div className="badge-number gentle-flex-center">
                                 <span>{cart.length}</span>
                             </div> : ""}
                     </Link>
                     <Link to="/wishlist" className="badge mx-2">
-                        <GoHeart className="icon-link link-none" />
-                        <div className="badge-number gentle-flex-center">
-                            <span>4</span>
-                        </div>
+                        <WishlistIcon className="icon-link link-none" />
+                        {signinStatus && wishlist.length > 0 ?
+                            <div className="badge-number gentle-flex-center">
+                                <span>{wishlist.length}</span>
+                            </div> : ""}
                     </Link>
                 </div>
             </div>

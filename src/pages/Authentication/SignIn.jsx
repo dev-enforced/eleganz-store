@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
-import { FaChevronRight } from "react-icons/fa";
-import { initialsignInData, guestCredentials } from 'constants';
+import { initialsignInData, guestCredentials,RightIndicator } from 'constants';
 import { useAuthentication } from 'context';
 import { signInActionHandler } from 'services';
 import "./authentication.css";
@@ -86,7 +85,7 @@ const SignIn = () => {
                         </button>
                         <Link to="/signup" className="link-none gentle-flex flex-align-center">
                             Create New Account
-                            <FaChevronRight />
+                            <RightIndicator />
                         </Link>
 
                     </div>

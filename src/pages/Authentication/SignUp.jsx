@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { FaChevronRight } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthentication } from 'context';
 import "./authentication.css";
-import { initialSignupData } from 'constants';
+import { initialSignupData, RightIndicator } from 'constants';
 import { signupHandler } from 'services';
 
 const SignUp = () => {
@@ -21,7 +20,7 @@ const SignUp = () => {
                 <div className="form-name">
                     <h3>SIGNUP</h3>
                 </div>
-                <form className="gentle-form-group gentle-flex-gap txt-sm" onSubmit={(e)=>{signupHandler(e,signupData,authDispatch,navigate)}}>
+                <form className="gentle-form-group gentle-flex-gap txt-sm" onSubmit={(e) => { signupHandler(e, signupData, authDispatch, navigate) }}>
                     <div className="gentle-flex-gap name-taker flex-wrap">
                         <div className="gentle-input-group">
                             <label className="gentle-input-label" htmlFor="user-first-name">First Name</label>
@@ -97,7 +96,7 @@ const SignUp = () => {
                         </button>
                         <Link to="/signin" className="link-none btn btn-link gentle-flex flex-align-center">
                             Already have an Account? Sign In
-                            <FaChevronRight />
+                            <RightIndicator />
                         </Link>
 
                     </div>

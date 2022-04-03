@@ -1,9 +1,8 @@
 import React from "react";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { IoCartOutline as CartOutline, IoHeartOutline as HeartOutline } from 'react-icons/io5';
 import { useAuthentication } from "context";
-import { addToCart } from "services";
+import { addItemToWishlist, addToCart, removeItemFromWishlist } from "services";
 import "./ProductCard.css";
 
 const ProductCard = ({ productDetails }) => {
@@ -12,40 +11,6 @@ const ProductCard = ({ productDetails }) => {
     const { signinStatus, cart, wishlist } = authState;
     const { _id, title, categoryName, imgUrl, ratings, originalPrice, discountedPrice, discount, brand, inStock, wornBy } = productDetails
 
-    const addItemToWishlist = async (product, authDispatchFunction, authStateGiven) => {
-        try {
-            const {
-                data: {
-                    wishlist: wishlistUpdated
-                }
-            } = await axios.post("/api/user/wishlist", { product }, {
-                headers: {
-                    authorization: authStateGiven.authenticationToken
-                }
-            })
-            authDispatch({ type: "WISHLIST", payload: wishlistUpdated })
-        } catch (error) {
-            console.error("ERROR OCCURED WHILE ADDING ITEM TO WISHLIST");
-        }
-    }
-
-    const removeItemFromWishlist = async (product, authDispatchFunction, authStateGiven) => {
-        try {
-            const {
-                data: {
-                    wishlist: wishlistUpdated
-                }
-            } = await axios.delete(`/api/user/wishlist/${product._id}`, {
-                headers: {
-                    authorization: authStateGiven.authenticationToken
-                }
-            })
-            authDispatchFunction({ type: "WISHLIST", payload: wishlistUpdated })
-        } catch (error) {
-            console.log(error);
-            console.error("ERROR OCCURED WHILE ADDING ITEM TO WISHLIST");
-        }
-    }
     return (
         <div key={_id} className={`card card-vertical ${!inStock ? "card-overlay" : ""}`}>
             {!inStock ? <div className="overlay-text-container">

@@ -1,12 +1,12 @@
 import React from "react";
-import { FaMinus, FaPlus, FaTrash } from "react-icons/fa";
 import { useAuthentication } from "context";
 import './CartItemList.css';
-import { quantityUpdate, removeProductFromCart } from "services";
+import { Increase, Decrease, Remove } from "constants";
+import { addItemToWishlist, quantityUpdate, removeItemFromWishlist, removeProductFromCart } from "services";
 
 const CartItemList = () => {
     const { authState, authDispatch } = useAuthentication();
-    const { cart: cartProvided } = authState;
+    const { cart: cartProvided, wishlist: wishlistProvided } = authState;
     return (
         <div className="cart-items-list flex-column">
             {
@@ -30,13 +30,13 @@ const CartItemList = () => {
                                         <button onClick={() => {
                                             quantityUpdate(authState, authDispatch, everyCartItem, "decrement")
                                         }} className="py-2 px-3 cart-item-quantity-btn">
-                                            <FaMinus />
+                                            <Decrease />
                                         </button> :
                                         <button onClick={() => {
                                             removeProductFromCart(authState, authDispatch, everyCartItem)
                                         }}
                                             className="py-2 px-3 cart-item-quantity-btn">
-                                            <FaTrash />
+                                            <Remove />
                                         </button>
                                     }
                                     <span className="m-2 px-3 py-2">
@@ -46,11 +46,15 @@ const CartItemList = () => {
                                         quantityUpdate(authState, authDispatch, everyCartItem, "increment")
                                     }}
                                         className="py-2 px-3 cart-item-quantity-btn">
-                                        <FaPlus />
+                                        <Increase />
                                     </button>
                                 </div>
                                 <div className="cart-actions gentle-flex-gap flex-column flex-align-center">
-                                    <button className="btn btn-primary">WISHLIST CHECK</button>
+                                    {
+                                        wishlistProvided.some((everyItem) => everyItem._id === _id)
+                                            ? <button onClick={() => removeItemFromWishlist(everyCartItem, authDispatch, authState)} className="btn btn-primary">REMOVE FROM WISHLIST</button>
+                                            : <button onClick={() => addItemToWishlist(everyCartItem, authDispatch, authState)} className="btn btn-primary">ADD TO WISHLIST</button>
+                                    }
                                     <button onClick={() => {
                                         removeProductFromCart(authState, authDispatch, everyCartItem)
                                     }}
