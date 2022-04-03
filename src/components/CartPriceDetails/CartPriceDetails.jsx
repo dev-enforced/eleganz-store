@@ -7,7 +7,6 @@ const CartPriceDetails = () => {
     const priceSum = cartProvided.reduce((totalPrice, everyCartItem) => {
         return ({ ...totalPrice, original: Number(everyCartItem.qty) * (Number(everyCartItem.originalPrice) + totalPrice.original), discount: Number(everyCartItem.qty) *(Number(everyCartItem.discountedPrice) + totalPrice.discount) })
     }, { original: 0, discount: 0 })
-    console.log(cartProvided);
     return (
         cartProvided.length === 0 ? "" :
             <div className="cart-items-price-details m-4">
