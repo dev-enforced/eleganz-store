@@ -16,6 +16,8 @@ const authReducer = (authStateProvided, authAction) => {
             return { ...authStateProvided, ...payload.createdUser, authenticationToken: payload.encodedToken, signinStatus: true }
         case "ADD-TO-CART":
             return { ...authStateProvided, cart: payload }
+        case "WISHLIST":
+            return { ...authStateProvided, wishlist: payload }
         default:
             return { ...authStateProvided }
     }

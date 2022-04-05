@@ -1,15 +1,16 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./ProductCard.css";
 import { IoCartOutline as CartOutline, IoHeartOutline as HeartOutline } from 'react-icons/io5';
 import { useAuthentication } from "context";
-import { addToCart } from "services";
+import { addItemToWishlist, addToCart, removeItemFromWishlist } from "services";
+import "./ProductCard.css";
 
 const ProductCard = ({ productDetails }) => {
     const navigate = useNavigate();
     const { authState, authDispatch } = useAuthentication();
-    const { signinStatus, cart } = authState;
+    const { signinStatus, cart, wishlist } = authState;
     const { _id, title, categoryName, imgUrl, ratings, originalPrice, discountedPrice, discount, brand, inStock, wornBy } = productDetails
+
     return (
         <div key={_id} className={`card card-vertical ${!inStock ? "card-overlay" : ""}`}>
             {!inStock ? <div className="overlay-text-container">
@@ -57,7 +58,25 @@ const ProductCard = ({ productDetails }) => {
                             ADD TO CART <CartOutline />
                         </button>
                 }
-                <button className="btn btn-primary btn-primary-hover gentle-flex-gap flex-align-center">ADD TO WISHLIST <HeartOutline /></button>
+                {
+                    wishlist.some((everyWishlistedItem) => everyWishlistedItem._id === _id) ?
+                        <>
+                            <Link to="/wishlist" className="link-none btn btn-warning btn-warning-hover gentle-flex-gap flex-align-center" >
+                                GO TO WISHLIST <HeartOutline />
+                            </Link>
+                            <button className="btn btn-primary btn-primary-hover gentle-flex-gap flex-align-center" onClick={() => {
+                                removeItemFromWishlist(productDetails, authDispatch, authState);
+                            }}>REMOVE FROM WISHLIST</button>
+                        </> :
+                        <button className="btn btn-primary btn-primary-hover gentle-flex-gap flex-align-center" onClick={() => {
+                            if (signinStatus) {
+                                addItemToWishlist(productDetails, authDispatch, authState);
+                            } else {
+                                navigate("/signin");
+                            }
+                        }} >ADD TO WISHLIST <HeartOutline /></button>
+                }
+
             </div>
         </div>
 
