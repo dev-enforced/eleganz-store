@@ -1,13 +1,12 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { useAuthentication } from "context";
-import { signOutService } from "services";
 import "./Navigation.css";
 import { Search, CartIcon, WishlistIcon } from "constants";
 const Navigation = () => {
-    const navigate = useNavigate();
-    const { authState, authDispatch } = useAuthentication();
+    const { authState, signOutActionHandler } = useAuthentication();
     const { signinStatus, cart, wishlist } = authState;
+    console.log(signinStatus);
     return (
         <nav className="main-nav-wrapper">
             <div className="main-container gentle-flex-gap flex-align-center flex-wrap">
@@ -24,7 +23,7 @@ const Navigation = () => {
                 </div>
                 <div className="main-links gentle-flex-gap flex-center flex-wrap">
                     {signinStatus ? <button onClick={() => {
-                        signOutService(authDispatch, navigate)
+                        signOutActionHandler();
                     }} className="link-none text-link" >
                         LOGOUT
                     </button> :

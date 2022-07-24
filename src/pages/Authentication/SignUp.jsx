@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuthentication } from 'context';
 import "./authentication.css";
 import { initialSignupData, RightIndicator } from 'constants';
-import { signupHandler } from 'services';
 
 const SignUp = () => {
-    const navigate = useNavigate();
-    const { authDispatch } = useAuthentication();
+    const { signUpActionHandler } = useAuthentication();
     const [signupData, setSignupData] = useState(initialSignupData);
     const signupDataHandler = (e) => {
         const { name, value } = e.target;
@@ -20,7 +18,10 @@ const SignUp = () => {
                 <div className="form-name">
                     <h3>SIGNUP</h3>
                 </div>
-                <form className="gentle-form-group gentle-flex-gap txt-sm" onSubmit={(e) => { signupHandler(e, signupData, authDispatch, navigate) }}>
+                <form className="gentle-form-group gentle-flex-gap txt-sm" onSubmit={(submitEvent) => { 
+                    submitEvent.preventDefault();
+                    signUpActionHandler(signupData) 
+                    }}>
                     <div className="gentle-flex-gap name-taker flex-wrap">
                         <div className="gentle-input-group">
                             <label className="gentle-input-label" htmlFor="user-first-name">First Name</label>

@@ -1,3 +1,2 @@
-export { signInActionHandler } from "./signInService"
-export { signOutService } from "./signOutService";
-export { signupHandler } from "./signUpService";
+export * from "./signInService";
+export * from "./signUpService";
