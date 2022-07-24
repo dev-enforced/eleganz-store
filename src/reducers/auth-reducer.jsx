@@ -1,6 +1,6 @@
 const initialAuthState = {
-    signinStatus: false,
-    authenticationToken: "",
+    signinStatus: localStorage.getItem("authenticationToken")?true:false,
+    authenticationToken: localStorage.getItem("authenticationToken")?localStorage.getItem("authenticationToken"):"",
     cart: [],
     wishlist: []
 }
@@ -11,7 +11,7 @@ const authReducer = (authStateProvided, authAction) => {
         case "SIGN-IN":
             return { ...authStateProvided, ...payload.foundUser, authenticationToken: payload.encodedToken, signinStatus: true }
         case "SIGN-OUT":
-            return { ...initialAuthState }
+            return { ...initialAuthState,signinStatus:false,authenticationToken:"" }
         case "SIGN-UP":
             return { ...authStateProvided, ...payload.createdUser, authenticationToken: payload.encodedToken, signinStatus: true }
         case "ADD-TO-CART":
