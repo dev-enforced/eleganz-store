@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { initialsignInData, guestCredentials,RightIndicator } from 'constants';
 import { useAuthentication } from 'context';
-// import { signInActionHandler } from 'services';
 import "./authentication.css";
 
 const SignIn = () => {
