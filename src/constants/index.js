@@ -1,17 +1,4 @@
-export {
-  initialsignInData,
-  initialSignupData,
-  guestCredentials,
-} from "./AuthConstants";
-export {
-  Decrease,
-  Increase,
-  Remove,
-  RightIndicator,
-  Search,
-  WishlistIcon,
-  CartIcon,
-  CartOutline,
-  HeartOutline,
-} from "./icons";
+export * from "./AuthConstants";
+export * from "./icons";
 export * from "./routes";
+export * from "./actionConstants";
