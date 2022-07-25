@@ -1,9 +1,9 @@
-.cart-items-price-details{
-    max-width: 20rem;
+.cart-items-price-details {
+  max-width: 20rem;
 }
 
-@media screen and (max-width:768px){
-    .cart-items-price-details {
-        min-width: 12rem;
-    }
+@media screen and (max-width: 768px) {
+  .cart-items-price-details {
+    min-width: 12rem;
+  }
 }

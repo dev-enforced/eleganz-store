@@ -3,12 +3,12 @@ import { FilterSidebar, ProductList } from "components";
 import "./ProductDisplay.css";
 
 const ProductDisplay = () => {
-    return (
-        <section className="product-page-layout">
-            <FilterSidebar />
-            <ProductList />
-        </section>
-    )
-}
+  return (
+    <section className="product-page-layout">
+      <FilterSidebar />
+      <ProductList />
+    </section>
+  );
+};
 
-export { ProductDisplay }
+export { ProductDisplay };
