@@ -1,13 +1,13 @@
 import React from "react";
+import { Hero, Categories } from "components";
 import "./Homepage.css";
-import {Hero,Categories} from "components";
 const Home = () => {
-    return (
-        <>
-        <Hero/>
-        <Categories/>
-        </>
-    )
-}
+  return (
+    <>
+      <Hero />
+      <Categories />
+    </>
+  );
+};
 
 export { Home };

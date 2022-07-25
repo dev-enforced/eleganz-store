@@ -7,4 +7,4 @@ export { ProductList } from "./ProductList/ProductList";
 export { FilterSidebar } from "./FilterSidebar/FilterSidebar";
 export { CartPriceDetails } from "./CartPriceDetails/CartPriceDetails";
 export { CartItemList } from "./CartItemList/CartItemList";
-export { WishlistedProductList } from "./WishlistedProductList/WishlistedProductList"
+export { WishlistedProductList } from "./WishlistedProductList/WishlistedProductList";
