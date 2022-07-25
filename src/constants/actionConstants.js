@@ -1,0 +1,37 @@
+const actionTypes = {
+  AUTH: {
+    SIGN_IN: "SIGN-IN",
+    SIGN_UP: "SIGN-UP",
+    SIGNOUT: "SIGN-OUT",
+  },
+  USER_RELATED_COLLECTIONS: {
+    CART: "CART",
+    WISHLIST: "WISHLIST",
+  },
+  FILTERS: {
+    SORT: {
+      HIGH_TO_LOW: "HIGH_TO_LOW",
+      LOW_TO_HIGH: "LOW_TO_HIGH",
+    },
+    GENDER: {
+      MEN: "MEN",
+      WOMEN: "WOMEN",
+    },
+    CATEGORIES: {
+      TSHIRTS: "TSHIRTS",
+      REMOVE_TSHIRTS: "REMOVE-TSHIRTS",
+      SHIRTS: "SHIRTS",
+      REMOVE_SHIRTS: "REMOVE-SHIRTS",
+      DRESSES: "DRESSES",
+      REMOVE_DRESSES: "REMOVE-DRESSES",
+      JACKETS: "JACKETS",
+      REMOVE_JACKETS: "REMOVE-JACKETS",
+      PANTS: "PANTS",
+      REMOVE_PANTS: "REMOVE-PANTS",
+    },
+    RATINGS_FILTER: "RATING-CHOICE",
+    PRICE_FILTER: "PRICE-SLIDE",
+    CLEAR_ALL_FILTERS: "CLEAR-ALL",
+  },
+};
+export { actionTypes };

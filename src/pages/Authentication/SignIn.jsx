@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { initialsignInData, guestCredentials,RightIndicator } from 'constants';
 import { useAuthentication } from 'context';
-import { signInActionHandler } from 'services';
 import "./authentication.css";
 
 const SignIn = () => {
-    const navigate = useNavigate();
-    const { authDispatch } = useAuthentication();
+    const { signInActionHandler } = useAuthentication();
     const [signinData, setSigninData] = useState(initialsignInData);
     const signInDataHandler = (e) => {
         const { name, value } = e.target;
@@ -22,7 +20,10 @@ const SignIn = () => {
                 <div className="form-name text-center">
                     <h3>SIGN IN</h3>
                 </div>
-                <form className="gentle-form-group gentle-flex-gap txt-sm" onSubmit={(e) => { signInActionHandler(e, signinData, authDispatch, navigate) }}>
+                <form className="gentle-form-group gentle-flex-gap txt-sm" onSubmit={(submitEvent) => { 
+                    submitEvent.preventDefault();
+                    signInActionHandler(signinData) 
+                    }}>
                     <div className="gentle-input-group">
                         <label className="gentle-input-label" htmlFor="user-email">Email Address</label>
                         <input
@@ -76,8 +77,9 @@ const SignIn = () => {
                             SIGN IN
                         </button>
                         <button
-                            onClick={(e) => {
-                                signInActionHandler(e, guestCredentials, authDispatch, navigate)
+                            onClick={(submitEvent) => {
+                                submitEvent.preventDefault();
+                                signInActionHandler(guestCredentials);
                             }}
                             className="btn btn-info btn-info-hover submit-btn"
                         >
