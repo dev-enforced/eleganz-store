@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { authReducer, initialAuthState } from "reducers";
 import { signinService, signupService } from "services";
 const AuthenticationContext = createContext(null);
@@ -7,6 +7,7 @@ const useAuthentication = () => useContext(AuthenticationContext);
 
 const AuthProvider = ({ children }) => {
   const navigateTo = useNavigate();
+  const location = useLocation();
   const [authState, authDispatch] = useReducer(authReducer, initialAuthState);
 
   //   Authentication related activities of login,signup and signout
@@ -16,7 +17,12 @@ const AuthProvider = ({ children }) => {
       if (status === 200) {
         authDispatch({ type: "SIGN-IN", payload: data });
         localStorage.setItem("authenticationToken", data.encodedToken);
-        navigateTo("/products");
+        navigateTo(location?.state?.from.pathname || "/products", {
+          replace: true,
+        });
+        // Passing {replace:true} in the second parameter erases the login page from
+        // the history flow i.e. if we press the back button on the browser we won't see
+        // the login page
       }
     } catch (error) {
       console.log("AN ERROR OCCURED WHILE EXECUTING SIGN IN ACTION HANDLER");
@@ -29,7 +35,9 @@ const AuthProvider = ({ children }) => {
       if (status === 201) {
         authDispatch({ type: "SIGN-UP", payload: data });
         localStorage.setItem("authenticationToken", data.encodedToken);
-        navigateTo("/products");
+        navigateTo(location?.state?.from.pathname || "/products", {
+          replace: true,
+        });
       }
     } catch (error) {
       console.log("AN ERROR OCCURED WHILE EXECUTING SIGN UP ACTION HANDLER");
