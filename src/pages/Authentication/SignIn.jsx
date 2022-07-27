@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { initialsignInData, guestCredentials, RightIndicator } from "constants";
 import { useAuthentication } from "context";
+import { useDocumentTitle } from "hooks";
 import "./authentication.css";
 
 const SignIn = () => {
@@ -11,6 +12,7 @@ const SignIn = () => {
     const { name, value } = e.target;
     setSigninData((prevSigninData) => ({ ...prevSigninData, [name]: value }));
   };
+  useDocumentTitle();
 
   return (
     <section className="main-content flex-column flex-center">
