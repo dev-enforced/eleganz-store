@@ -1,12 +1,15 @@
 import React from "react";
-import { Navigation, Footer } from "components";
-import { RoutesList } from "routes/Routes";
+import { Navigation, Footer, ScrollToTop } from "components";
+import { RoutesList } from "routes";
 function App() {
+
   return (
     <div className="App">
-      <Navigation />
-      <RoutesList />
-      <Footer />
+      <ScrollToTop>
+        <Navigation />
+        <RoutesList />
+        <Footer />
+      </ScrollToTop>
     </div>
   );
 }
