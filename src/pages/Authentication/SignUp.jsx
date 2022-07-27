@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuthentication } from "context";
-import "./authentication.css";
 import { initialSignupData, RightIndicator } from "constants";
+import { useDocumentTitle } from "hooks";
+import "./authentication.css";
 
 const SignUp = () => {
   const { signUpActionHandler } = useAuthentication();
   const [signupData, setSignupData] = useState(initialSignupData);
+  useDocumentTitle();
   const signupDataHandler = (e) => {
     const { name, value } = e.target;
     setSignupData((prevSignupData) => ({ ...prevSignupData, [name]: value }));

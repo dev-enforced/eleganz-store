@@ -35,7 +35,7 @@ const CartItemList = () => {
               <h3 className="m-1">{title}</h3>
               <p className="txt-xs mx-1">{brand}</p>
               <p className="gentle-flex flex-align-center cart-item-price-details">
-                <span className="card-price">{originalPrice}</span>
+                <del className="card-price">{originalPrice}</del>
                 <span className="card-original-price">{discountedPrice}</span>
                 <span className="card-discount"> {discount}% off</span>
               </p>
