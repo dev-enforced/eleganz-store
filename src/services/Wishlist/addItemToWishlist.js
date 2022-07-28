@@ -21,4 +21,5 @@ const addItemToWishlist = async (
     console.error("ERROR OCCURED WHILE ADDING ITEM TO WISHLIST");
   }
 };
-export { addItemToWishlist };
+const addItemToWishlistService = async () => {};
+export { addItemToWishlist, addItemToWishlistService };

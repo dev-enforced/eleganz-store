@@ -18,4 +18,6 @@ const removeProductFromCart = async (
     console.error("CART UPDATE FAILED WHEN TRYING TO REMOVE ITEM");
   }
 };
-export { removeProductFromCart };
+
+const removeProductFromCartService = async () => {};
+export { removeProductFromCart, removeProductFromCartService };

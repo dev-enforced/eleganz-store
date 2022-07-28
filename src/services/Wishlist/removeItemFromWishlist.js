@@ -19,4 +19,6 @@ const removeItemFromWishlist = async (
   }
 };
 
-export { removeItemFromWishlist };
+const removeItemFromWishlistService = async () => {};
+
+export { removeItemFromWishlist, removeItemFromWishlistService };

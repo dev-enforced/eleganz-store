@@ -17,4 +17,5 @@ const addToCart = async (authStateGiven, authDispatchFunction, product) => {
     console.error("API Call for Add Item To Cart failed");
   }
 };
-export { addToCart };
+const addToCartService = async () => {};
+export { addToCart, addToCartService };

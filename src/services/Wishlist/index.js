@@ -1,2 +1,2 @@
-export { addItemToWishlist } from "./addItemToWishlist";
-export { removeItemFromWishlist } from "./removeItemFromWishlist";
+export * from "./addItemToWishlist";
+export * from "./removeItemFromWishlist";

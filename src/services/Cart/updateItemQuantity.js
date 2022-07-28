@@ -26,4 +26,6 @@ const quantityUpdate = async (
     console.error("Error while doing quantity update through API");
   }
 };
-export { quantityUpdate };
+
+const quantityUpdateService = async () => {};
+export { quantityUpdate, quantityUpdateService };
