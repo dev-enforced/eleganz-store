@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useReducer } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { authReducer, initialAuthState } from "reducers";
-import { signinService, signupService } from "services";
+import { clearCartService, signinService, signupService } from "services";
 const AuthenticationContext = createContext(null);
 const useAuthentication = () => useContext(AuthenticationContext);
 
@@ -49,6 +49,15 @@ const AuthProvider = ({ children }) => {
     authDispatch({ type: "SIGN-OUT" });
     navigateTo("/");
   };
+
+  // CART RELATED ACTIVITIES
+  const clearCartActionHandler = async () => {
+    const {
+      data: { cart: cartUpdated },
+    } = await clearCartService(authState.authenticationToken);
+    authDispatch({ type: "ADD-TO-CART", payload: cartUpdated });
+  };
+
   return (
     <AuthenticationContext.Provider
       value={{
@@ -57,6 +66,7 @@ const AuthProvider = ({ children }) => {
         signInActionHandler,
         signOutActionHandler,
         signUpActionHandler,
+        clearCartActionHandler,
       }}
     >
       {children}
