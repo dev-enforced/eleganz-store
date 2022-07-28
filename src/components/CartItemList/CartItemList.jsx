@@ -35,8 +35,8 @@ const CartItemList = () => {
               <h3 className="m-1">{title}</h3>
               <p className="txt-xs mx-1">{brand}</p>
               <p className="gentle-flex flex-align-center cart-item-price-details">
-                <del className="card-price">{originalPrice}</del>
-                <span className="card-original-price">{discountedPrice}</span>
+                <span className="card-price">{discountedPrice}</span>
+                <del className="card-original-price">{originalPrice}</del>
                 <span className="card-discount"> {discount}% off</span>
               </p>
               <div className="cart-item-quantity flex-row flex-align-center m-0 mx-1">
