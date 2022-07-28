@@ -86,7 +86,7 @@ const CartPriceDetails = () => {
       </div>
       <button
         onClick={() => {
-          displayPaymentGateway(priceSum.original - priceSum.discount);
+          displayPaymentGateway(priceSum.discount);
         }}
       >
         CHECKOUT
