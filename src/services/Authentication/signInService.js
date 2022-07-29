@@ -9,9 +9,9 @@ const signinService = async (signinDataProvided) => {
       ...signinDataProvided,
     });
     return { data, status };
-  } catch (error) {
+  } catch (signinServiceError) {
     console.log("AN ERROR OCCURED WHILE MAKING LOGIN API CALL");
-    console.error(error);
+    console.error(signinServiceError);
   }
 };
 

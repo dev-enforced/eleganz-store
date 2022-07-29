@@ -10,9 +10,9 @@ const signupService = async (signupData) => {
       ...signupData,
     });
     return { data, status };
-  } catch (error) {
+  } catch (signupServiceError) {
     console.log("AN ERROR OCCURED while making signup api call");
-    console.error(error);
+    console.error(signupServiceError);
   }
 };
 

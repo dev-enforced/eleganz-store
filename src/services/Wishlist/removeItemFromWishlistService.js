@@ -1,24 +1,5 @@
 import axios from "axios";
 import { url } from "constants";
-const removeItemFromWishlist = async (
-  product,
-  authDispatchFunction,
-  authStateGiven
-) => {
-  try {
-    const {
-      data: { wishlist: wishlistUpdated },
-    } = await axios.delete(`/api/user/wishlist/${product._id}`, {
-      headers: {
-        authorization: authStateGiven.authenticationToken,
-      },
-    });
-    authDispatchFunction({ type: "WISHLIST", payload: wishlistUpdated });
-  } catch (error) {
-    console.log(error);
-    console.error("ERROR OCCURED WHILE ADDING ITEM TO WISHLIST");
-  }
-};
 
 const removeItemFromWishlistService = async (
   productDetailsGiven,
@@ -37,9 +18,12 @@ const removeItemFromWishlistService = async (
       }
     );
     return { data };
-  } catch (removeItemFromWishlistError) {
-    console.error("An error occured while adding an item");
+  } catch (removeItemFromWishlistServiceError) {
+    console.error(
+      "An error occured while removing an item from wishlist: ",
+      removeItemFromWishlistServiceError
+    );
   }
 };
 
-export { removeItemFromWishlist, removeItemFromWishlistService };
+export { removeItemFromWishlistService };

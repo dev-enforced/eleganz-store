@@ -1,23 +1,5 @@
 import axios from "axios";
 import { url } from "constants";
-const addToCart = async (authStateGiven, authDispatchFunction, product) => {
-  try {
-    const {
-      data: { cart: cartUpdated },
-    } = await axios.post(
-      "/api/user/cart",
-      { product },
-      {
-        headers: {
-          authorization: authStateGiven.authenticationToken,
-        },
-      }
-    );
-    authDispatchFunction({ type: "ADD-TO-CART", payload: cartUpdated });
-  } catch (error) {
-    console.error("API Call for Add Item To Cart failed");
-  }
-};
 const addItemToCartService = async (product, tokenProvided) => {
   const {
     USER_PERSONAL_COLLECTIONS: { CART_URL },
@@ -36,4 +18,4 @@ const addItemToCartService = async (product, tokenProvided) => {
     );
   }
 };
-export { addToCart, addItemToCartService };
+export { addItemToCartService };

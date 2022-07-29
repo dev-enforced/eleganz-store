@@ -1,23 +1,5 @@
 import axios from "axios";
 import { url } from "constants";
-const removeProductFromCart = async (
-  authStateProvided,
-  authDispatchFunction,
-  productDetails
-) => {
-  try {
-    const {
-      data: { cart: cartUpdated },
-    } = await axios.delete(`/api/user/cart/${productDetails._id}`, {
-      headers: {
-        authorization: authStateProvided.authenticationToken,
-      },
-    });
-    authDispatchFunction({ type: "ADD-TO-CART", payload: cartUpdated });
-  } catch (error) {
-    console.error("CART UPDATE FAILED WHEN TRYING TO REMOVE ITEM");
-  }
-};
 
 const removeProductFromCartService = async (
   productDetailsGiven,
@@ -36,11 +18,11 @@ const removeProductFromCartService = async (
       }
     );
     return { data };
-  } catch (removeProductFromCartError) {
+  } catch (removeProductFromCartServiceError) {
     console.error(
       "AN ERROR OCCURED WHILE REMOVING A PRODUCT FROM CART: ",
-      removeProductFromCartError
+      removeProductFromCartServiceError
     );
   }
 };
-export { removeProductFromCart, removeProductFromCartService };
+export { removeProductFromCartService };

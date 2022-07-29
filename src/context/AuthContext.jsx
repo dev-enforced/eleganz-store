@@ -12,6 +12,7 @@ import {
   signupService,
 } from "services";
 import { routes } from "constants";
+import { actionTypes } from "constants";
 const AuthenticationContext = createContext(null);
 const useAuthentication = () => useContext(AuthenticationContext);
 
@@ -19,6 +20,10 @@ const AuthProvider = ({ children }) => {
   const navigateTo = useNavigate();
   const location = useLocation();
   const [authState, authDispatch] = useReducer(authReducer, initialAuthState);
+  const {
+    AUTH: { SIGN_IN, SIGN_UP, SIGNOUT },
+    USER_RELATED_COLLECTIONS: { CART, WISHLIST },
+  } = actionTypes;
   const { PRODUCTS_ROUTE, HOME_ROUTE, SIGNIN_ROUTE } = routes;
   const { signinStatus, authenticationToken } = authState;
   //   Authentication related activities of login,signup and signout
@@ -26,7 +31,7 @@ const AuthProvider = ({ children }) => {
     try {
       const { data, status } = await signinService(signinDataProvided);
       if (status === 200) {
-        authDispatch({ type: "SIGN-IN", payload: data });
+        authDispatch({ type: SIGN_IN, payload: data });
         localStorage.setItem("authenticationToken", data.encodedToken);
         navigateTo(location?.state?.from.pathname || PRODUCTS_ROUTE, {
           replace: true,
@@ -44,7 +49,7 @@ const AuthProvider = ({ children }) => {
     try {
       const { data, status } = await signupService(signupDataProvided);
       if (status === 201) {
-        authDispatch({ type: "SIGN-UP", payload: data });
+        authDispatch({ type: SIGN_UP, payload: data });
         localStorage.setItem("authenticationToken", data.encodedToken);
         navigateTo(location?.state?.from.pathname || PRODUCTS_ROUTE, {
           replace: true,
@@ -57,7 +62,7 @@ const AuthProvider = ({ children }) => {
   };
   const signOutActionHandler = () => {
     localStorage.removeItem("authenticationToken");
-    authDispatch({ type: "SIGN-OUT" });
+    authDispatch({ type: SIGNOUT });
     navigateTo(HOME_ROUTE);
   };
 
@@ -74,7 +79,7 @@ const AuthProvider = ({ children }) => {
           productDetailsGiven,
           authenticationToken
         );
-        authDispatch({ type: "ADD-TO-CART", payload: cartUpdated });
+        authDispatch({ type: CART, payload: cartUpdated });
       } catch (addItemToCartActionError) {
         console.error(
           "An error occured while adding an item to cart:",
@@ -91,7 +96,7 @@ const AuthProvider = ({ children }) => {
         productDetailsGiven,
         authenticationToken
       );
-      authDispatch({ type: "ADD-TO-CART", payload: cartUpdated });
+      authDispatch({ type: CART, payload: cartUpdated });
     } catch (removeProductFromCartActionError) {
       console.error(
         "An error occured while removing a product from cart: ",
@@ -111,7 +116,7 @@ const AuthProvider = ({ children }) => {
         updateTypeProvided,
         authenticationToken
       );
-      authDispatch({ type: "ADD-TO-CART", payload: cartUpdated });
+      authDispatch({ type: CART, payload: cartUpdated });
     } catch (updateItemQuantityActionError) {
       console.error(
         "An error occured while updating the quantity of the item in the cart:",
@@ -124,7 +129,7 @@ const AuthProvider = ({ children }) => {
       const {
         data: { cart: cartUpdated },
       } = await clearWholeCartService(authenticationToken);
-      authDispatch({ type: "ADD-TO-CART", payload: cartUpdated });
+      authDispatch({ type: CART, payload: cartUpdated });
     } catch (clearWholeCartActionError) {
       console.error(
         "An error occured while clearing cart: ",
@@ -146,7 +151,7 @@ const AuthProvider = ({ children }) => {
           productDetailsGiven,
           authenticationToken
         );
-        authDispatch({ type: "WISHLIST", payload: wishlistUpdated });
+        authDispatch({ type: WISHLIST, payload: wishlistUpdated });
       } catch (addItemToWishlistActionError) {
         console.error(
           "An error occured while adding the item to wishlist: ",
@@ -163,7 +168,7 @@ const AuthProvider = ({ children }) => {
         productDetailsGiven,
         authenticationToken
       );
-      authDispatch({ type: "WISHLIST", payload: wishlistUpdated });
+      authDispatch({ type: WISHLIST, payload: wishlistUpdated });
     } catch (removeItemFromWishlistActionError) {
       console.error(
         "An error occured while adding the item to wishlist: ",
