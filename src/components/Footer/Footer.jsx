@@ -15,7 +15,6 @@ const Footer = () => {
   } = actionTypes;
   const navigateTo = useNavigate();
   const { HOME_ROUTE, PRODUCTS_ROUTE } = routes;
-  routes;
   return (
     <footer>
       <div className="footer-content-container p-8">
