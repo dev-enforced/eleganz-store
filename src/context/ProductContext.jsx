@@ -45,7 +45,7 @@ const ProductProvider = ({ children }) => {
     return () => {
       filterDispatch({ type: CLEAR_ALL_FILTERS });
     };
-  }, [categoryReceived]);
+  }, [categoryReceived, CLEAR_ALL_FILTERS]);
   const newProducts = cumulativeFilters(
     applyPriceChoice,
     applySortingChoice,
