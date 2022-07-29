@@ -1,4 +1,4 @@
-export { loadProductsAndCategories } from "./Products"
-export { signOutService, signInActionHandler, signupHandler } from "./Authentication";
-export { addToCart, quantityUpdate, removeProductFromCart } from "./Cart";
-export { addItemToWishlist, removeItemFromWishlist } from "./Wishlist";
+export * from "./Products";
+export * from "./Authentication";
+export * from "./Cart";
+export * from "./Wishlist";

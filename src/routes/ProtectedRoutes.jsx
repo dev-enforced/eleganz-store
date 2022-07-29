@@ -1,13 +1,20 @@
-import { useAuthentication } from "context";
 import React from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
+import { useAuthentication } from "context";
 
 const ProtectedRoutes = ({ specificPart }) => {
-    const { authState: { signinStatus } } = useAuthentication();
-    return (
-        <>
-            {signinStatus ? specificPart : <Navigate replace to="/signin" />}
-        </>
-    )
-}
+  const {
+    authState: { signinStatus },
+  } = useAuthentication();
+  const location = useLocation();
+  return (
+    <>
+      {signinStatus ? (
+        specificPart
+      ) : (
+        <Navigate replace to="/signin" state={{ from: location }} />
+      )}
+    </>
+  );
+};
 export { ProtectedRoutes };

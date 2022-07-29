@@ -1,14 +1,16 @@
 import React from "react";
 import { FilterSidebar, ProductList } from "components";
+import { useDocumentTitle } from "hooks";
 import "./ProductDisplay.css";
 
 const ProductDisplay = () => {
-    return (
-        <section className="product-page-layout">
-            <FilterSidebar />
-            <ProductList />
-        </section>
-    )
-}
+  useDocumentTitle();
+  return (
+    <section className="product-page-layout">
+      <FilterSidebar />
+      <ProductList />
+    </section>
+  );
+};
 
-export { ProductDisplay }
+export { ProductDisplay };

@@ -1,13 +1,15 @@
 import React from "react";
+import { Hero, Categories } from "components";
+import { useDocumentTitle } from "hooks";
 import "./Homepage.css";
-import {Hero,Categories} from "components";
 const Home = () => {
-    return (
-        <>
-        <Hero/>
-        <Categories/>
-        </>
-    )
-}
+  useDocumentTitle();
+  return (
+    <>
+      <Hero />
+      <Categories />
+    </>
+  );
+};
 
 export { Home };
