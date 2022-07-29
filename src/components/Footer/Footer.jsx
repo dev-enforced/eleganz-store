@@ -3,8 +3,16 @@ import { Link, useNavigate } from "react-router-dom";
 import { useProducts } from "context";
 import { routes } from "constants";
 import "./Footer.css";
+import { actionTypes } from "constants";
 const Footer = () => {
   const { filterDispatch } = useProducts();
+  const {
+    FILTERS: {
+      CLEAR_ALL_FILTERS,
+      GENDER: { MEN, WOMEN },
+      CATEGORIES: { JACKETS, DRESSES, TSHIRTS },
+    },
+  } = actionTypes;
   const navigateTo = useNavigate();
   const { HOME_ROUTE, PRODUCTS_ROUTE } = routes;
   routes;
@@ -64,8 +72,8 @@ const Footer = () => {
             <li
               className="my-4 category-link text-cursor-pointer"
               onClick={() => {
-                filterDispatch({ type: "CLEAR-ALL" });
-                filterDispatch({ type: "JACKETS" });
+                filterDispatch({ type: CLEAR_ALL_FILTERS });
+                filterDispatch({ type: JACKETS });
                 navigateTo(PRODUCTS_ROUTE);
               }}
             >
@@ -74,8 +82,8 @@ const Footer = () => {
             <li
               className="my-4 category-link text-cursor-pointer"
               onClick={() => {
-                filterDispatch({ type: "CLEAR-ALL" });
-                filterDispatch({ type: "DRESSES" });
+                filterDispatch({ type: CLEAR_ALL_FILTERS });
+                filterDispatch({ type: DRESSES });
                 navigateTo(PRODUCTS_ROUTE);
               }}
             >
@@ -84,8 +92,8 @@ const Footer = () => {
             <li
               className="my-4 category-link text-cursor-pointer"
               onClick={() => {
-                filterDispatch({ type: "CLEAR-ALL" });
-                filterDispatch({ type: "TSHIRTS" });
+                filterDispatch({ type: CLEAR_ALL_FILTERS });
+                filterDispatch({ type: TSHIRTS });
                 navigateTo(PRODUCTS_ROUTE);
               }}
             >
@@ -100,8 +108,8 @@ const Footer = () => {
             <li
               className="my-4 category-link text-cursor-pointer"
               onClick={() => {
-                filterDispatch({ type: "CLEAR-ALL" });
-                filterDispatch({ type: "MEN" });
+                filterDispatch({ type: CLEAR_ALL_FILTERS });
+                filterDispatch({ type: MEN });
                 navigateTo(PRODUCTS_ROUTE);
               }}
             >
@@ -110,8 +118,8 @@ const Footer = () => {
             <li
               className="my-4 category-link text-cursor-pointer"
               onClick={() => {
-                filterDispatch({ type: "CLEAR-ALL" });
-                filterDispatch({ type: "WOMEN" });
+                filterDispatch({ type: CLEAR_ALL_FILTERS });
+                filterDispatch({ type: WOMEN });
                 navigateTo(PRODUCTS_ROUTE);
               }}
             >
