@@ -14,7 +14,7 @@ import {
   applyRatingsChoice,
   applyGenderChoice,
   applySortingChoice,
-} from "utilities/filterUtilities";
+} from "utilities";
 import { loadProductsAndCategories } from "services";
 const ProductContext = createContext();
 const useProducts = () => useContext(ProductContext);

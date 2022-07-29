@@ -1,8 +1,11 @@
 import axios from "axios";
-
+import { url } from "constants";
 const signinService = async (signinDataProvided) => {
+  const {
+    AUTH: { SIGN_IN_URL },
+  } = url;
   try {
-    const { data, status } = await axios.post("/api/auth/login", {
+    const { data, status } = await axios.post(`${SIGN_IN_URL}`, {
       ...signinDataProvided,
     });
     return { data, status };

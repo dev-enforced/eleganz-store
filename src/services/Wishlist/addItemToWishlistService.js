@@ -1,4 +1,5 @@
 import axios from "axios";
+import { url } from "constants";
 const addItemToWishlist = async (
   product,
   authDispatchFunction,
@@ -21,5 +22,22 @@ const addItemToWishlist = async (
     console.error("ERROR OCCURED WHILE ADDING ITEM TO WISHLIST");
   }
 };
-const addItemToWishlistService = async () => {};
+const addItemToWishlistService = async (product, tokenProvided) => {
+  const {
+    USER_PERSONAL_COLLECTIONS: { WISHLIST_URL },
+  } = url;
+  try {
+    const { data } = await axios.post(
+      `${WISHLIST_URL}`,
+      { product },
+      { headers: { authorization: tokenProvided } }
+    );
+    return { data };
+  } catch (addItemToWishlistError) {
+    console.error(
+      "AN ERROR OCCURED WHILE DOING API CALL FOR ADDING AN ITEM TO WISHLIST:",
+      addItemToWishlist
+    );
+  }
+};
 export { addItemToWishlist, addItemToWishlistService };

@@ -1,16 +1,19 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useProducts } from "context";
+import { routes } from "constants";
 import "./Footer.css";
 const Footer = () => {
   const { filterDispatch } = useProducts();
-  const navigate = useNavigate();
+  const navigateTo = useNavigate();
+  const { HOME_ROUTE, PRODUCTS_ROUTE } = routes;
+  routes;
   return (
     <footer>
       <div className="footer-content-container p-8">
         <div className="shop-details">
           <div>
-            <Link to="/">
+            <Link to={HOME_ROUTE}>
               <img
                 src="./assets/eleganz-logo.png"
                 alt="Eleganz Store"
@@ -63,7 +66,7 @@ const Footer = () => {
               onClick={() => {
                 filterDispatch({ type: "CLEAR-ALL" });
                 filterDispatch({ type: "JACKETS" });
-                navigate("/products");
+                navigateTo(PRODUCTS_ROUTE);
               }}
             >
               JACKETS
@@ -73,7 +76,7 @@ const Footer = () => {
               onClick={() => {
                 filterDispatch({ type: "CLEAR-ALL" });
                 filterDispatch({ type: "DRESSES" });
-                navigate("/products");
+                navigateTo(PRODUCTS_ROUTE);
               }}
             >
               DRESSES
@@ -83,7 +86,7 @@ const Footer = () => {
               onClick={() => {
                 filterDispatch({ type: "CLEAR-ALL" });
                 filterDispatch({ type: "TSHIRTS" });
-                navigate("/products");
+                navigateTo(PRODUCTS_ROUTE);
               }}
             >
               TSHIRTS
@@ -99,7 +102,7 @@ const Footer = () => {
               onClick={() => {
                 filterDispatch({ type: "CLEAR-ALL" });
                 filterDispatch({ type: "MEN" });
-                navigate("/products");
+                navigateTo(PRODUCTS_ROUTE);
               }}
             >
               MEN
@@ -109,7 +112,7 @@ const Footer = () => {
               onClick={() => {
                 filterDispatch({ type: "CLEAR-ALL" });
                 filterDispatch({ type: "WOMEN" });
-                navigate("/products");
+                navigateTo(PRODUCTS_ROUTE);
               }}
             >
               WOMEN

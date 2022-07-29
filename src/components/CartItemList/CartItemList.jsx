@@ -1,16 +1,16 @@
 import React from "react";
 import { useAuthentication } from "context";
 import { Increase, Decrease, Remove } from "constants";
-import {
-  addItemToWishlist,
-  quantityUpdate,
-  removeItemFromWishlist,
-  removeProductFromCart,
-} from "services";
 import "./CartItemList.css";
 
 const CartItemList = () => {
-  const { authState, authDispatch } = useAuthentication();
+  const {
+    authState,
+    removeProductFromCartAction,
+    updateItemQuantityAction,
+    removeItemFromWishlistAction,
+    addItemToWishlistAction,
+  } = useAuthentication();
   const { cart: cartProvided, wishlist: wishlistProvided } = authState;
   return (
     <div className="cart-items-list flex-column">
@@ -43,12 +43,7 @@ const CartItemList = () => {
                 {qty !== 1 ? (
                   <button
                     onClick={() => {
-                      quantityUpdate(
-                        authState,
-                        authDispatch,
-                        everyCartItem,
-                        "decrement"
-                      );
+                      updateItemQuantityAction(everyCartItem, "decrement");
                     }}
                     className="py-2 px-3 cart-item-quantity-btn"
                   >
@@ -57,11 +52,7 @@ const CartItemList = () => {
                 ) : (
                   <button
                     onClick={() => {
-                      removeProductFromCart(
-                        authState,
-                        authDispatch,
-                        everyCartItem
-                      );
+                      removeProductFromCartAction(everyCartItem);
                     }}
                     className="py-2 px-3 cart-item-quantity-btn"
                   >
@@ -71,12 +62,7 @@ const CartItemList = () => {
                 <span className="m-2 px-3 py-2">{qty}</span>
                 <button
                   onClick={() => {
-                    quantityUpdate(
-                      authState,
-                      authDispatch,
-                      everyCartItem,
-                      "increment"
-                    );
+                    updateItemQuantityAction(everyCartItem, "increment");
                   }}
                   className="py-2 px-3 cart-item-quantity-btn"
                 >
@@ -86,22 +72,14 @@ const CartItemList = () => {
               <div className="cart-actions gentle-flex-gap flex-column flex-align-center">
                 {wishlistProvided.some((everyItem) => everyItem._id === _id) ? (
                   <button
-                    onClick={() =>
-                      removeItemFromWishlist(
-                        everyCartItem,
-                        authDispatch,
-                        authState
-                      )
-                    }
+                    onClick={() => removeItemFromWishlistAction(everyCartItem)}
                     className="btn btn-primary"
                   >
                     REMOVE FROM WISHLIST
                   </button>
                 ) : (
                   <button
-                    onClick={() =>
-                      addItemToWishlist(everyCartItem, authDispatch, authState)
-                    }
+                    onClick={() => addItemToWishlistAction(everyCartItem)}
                     className="btn btn-primary"
                   >
                     ADD TO WISHLIST
@@ -109,11 +87,7 @@ const CartItemList = () => {
                 )}
                 <button
                   onClick={() => {
-                    removeProductFromCart(
-                      authState,
-                      authDispatch,
-                      everyCartItem
-                    );
+                    removeProductFromCartAction(everyCartItem);
                   }}
                   className="btn btn-error"
                 >

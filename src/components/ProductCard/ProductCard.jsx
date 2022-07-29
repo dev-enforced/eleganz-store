@@ -1,17 +1,20 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   IoCartOutline as CartOutline,
   IoHeartOutline as HeartOutline,
 } from "react-icons/io5";
 import { useAuthentication } from "context";
-import { addItemToWishlist, addToCart, removeItemFromWishlist } from "services";
 import "./ProductCard.css";
 
 const ProductCard = ({ productDetails }) => {
-  const navigate = useNavigate();
-  const { authState, authDispatch } = useAuthentication();
-  const { signinStatus, cart, wishlist } = authState;
+  const {
+    authState,
+    addItemToCartAction,
+    addItemToWishlistAction,
+    removeItemFromWishlistAction,
+  } = useAuthentication();
+  const { cart, wishlist } = authState;
   const {
     _id,
     title,
@@ -25,7 +28,6 @@ const ProductCard = ({ productDetails }) => {
     inStock,
     wornBy,
   } = productDetails;
-
   return (
     <div
       key={_id}
@@ -74,11 +76,7 @@ const ProductCard = ({ productDetails }) => {
           <button
             className="btn btn-warning btn-warning-hover gentle-flex-gap flex-align-center"
             onClick={() => {
-              if (signinStatus) {
-                addToCart(authState, authDispatch, productDetails);
-              } else {
-                navigate("/signin");
-              }
+              addItemToCartAction(productDetails);
             }}
           >
             ADD TO CART <CartOutline />
@@ -97,7 +95,7 @@ const ProductCard = ({ productDetails }) => {
             <button
               className="btn btn-primary btn-primary-hover gentle-flex-gap flex-align-center"
               onClick={() => {
-                removeItemFromWishlist(productDetails, authDispatch, authState);
+                removeItemFromWishlistAction(productDetails);
               }}
             >
               REMOVE FROM WISHLIST
@@ -107,11 +105,7 @@ const ProductCard = ({ productDetails }) => {
           <button
             className="btn btn-primary btn-primary-hover gentle-flex-gap flex-align-center"
             onClick={() => {
-              if (signinStatus) {
-                addItemToWishlist(productDetails, authDispatch, authState);
-              } else {
-                navigate("/signin");
-              }
+              addItemToWishlistAction(productDetails);
             }}
           >
             ADD TO WISHLIST <HeartOutline />

@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { routes } from "constants";
 import "./Cart.css";
 
 const EmptyCart = () => {
+  const { WISHLIST_ROUTE, PRODUCTS_ROUTE } = routes;
   return (
     <section className="empty-cart-content flex-column flex-center">
       <div className="cart-info-container flex-column flex-justify-center p-10">
@@ -14,12 +16,12 @@ const EmptyCart = () => {
         </div>
         <div className="text-center flex-column gentle-flex-gap">
           <Link
-            to="/wishlist"
+            to={WISHLIST_ROUTE}
             className="link-none btn btn-primary btn-primary-hover"
           >
             GO TO WISHLIST
           </Link>
-          <Link to="/products" className="link-none btn btn-outline">
+          <Link to={PRODUCTS_ROUTE} className="link-none btn btn-outline">
             BROWSE PRODUCTS
           </Link>
         </div>
