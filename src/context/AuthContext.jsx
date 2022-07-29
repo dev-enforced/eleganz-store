@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useReducer } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { toast } from "react-hot-toast";
 import { authReducer, initialAuthState } from "reducers";
 import {
   addItemToCartService,
@@ -13,6 +14,7 @@ import {
 } from "services";
 import { routes } from "constants";
 import { actionTypes } from "constants";
+
 const AuthenticationContext = createContext(null);
 const useAuthentication = () => useContext(AuthenticationContext);
 
@@ -36,6 +38,9 @@ const AuthProvider = ({ children }) => {
         navigateTo(location?.state?.from.pathname || PRODUCTS_ROUTE, {
           replace: true,
         });
+        toast.success(`Welcome back shopper`, {
+          icon: "👋🏻",
+        });
         // Passing {replace:true} in the second parameter erases the login page from
         // the history flow i.e. if we press the back button on the browser we won't see
         // the login page
@@ -53,6 +58,9 @@ const AuthProvider = ({ children }) => {
         localStorage.setItem("authenticationToken", data.encodedToken);
         navigateTo(location?.state?.from.pathname || PRODUCTS_ROUTE, {
           replace: true,
+        });
+        toast.success(`Hello shopper`, {
+          icon: "👋🏻",
         });
       }
     } catch (error) {
@@ -80,6 +88,7 @@ const AuthProvider = ({ children }) => {
           authenticationToken
         );
         authDispatch({ type: CART, payload: cartUpdated });
+        toast.success(`Product added to cart`);
       } catch (addItemToCartActionError) {
         console.error(
           "An error occured while adding an item to cart:",
@@ -97,6 +106,7 @@ const AuthProvider = ({ children }) => {
         authenticationToken
       );
       authDispatch({ type: CART, payload: cartUpdated });
+      toast.success("Product removed from cart");
     } catch (removeProductFromCartActionError) {
       console.error(
         "An error occured while removing a product from cart: ",
@@ -117,6 +127,7 @@ const AuthProvider = ({ children }) => {
         authenticationToken
       );
       authDispatch({ type: CART, payload: cartUpdated });
+      toast.success("Product quantity updated");
     } catch (updateItemQuantityActionError) {
       console.error(
         "An error occured while updating the quantity of the item in the cart:",
@@ -152,6 +163,7 @@ const AuthProvider = ({ children }) => {
           authenticationToken
         );
         authDispatch({ type: WISHLIST, payload: wishlistUpdated });
+        toast.success("Product added to wishlist");
       } catch (addItemToWishlistActionError) {
         console.error(
           "An error occured while adding the item to wishlist: ",
@@ -169,6 +181,7 @@ const AuthProvider = ({ children }) => {
         authenticationToken
       );
       authDispatch({ type: WISHLIST, payload: wishlistUpdated });
+      toast.success("Product removed from wishlist");
     } catch (removeItemFromWishlistActionError) {
       console.error(
         "An error occured while adding the item to wishlist: ",
