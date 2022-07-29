@@ -1,3 +1,4 @@
+import { actionTypes } from "constants";
 const initialFilterState = {
   sortPriceOrder: "",
   gender: "",
@@ -6,96 +7,116 @@ const initialFilterState = {
   endRatings: "5",
   priceLimit: "3500",
 };
-
+const {
+  FILTERS: {
+    RATINGS_FILTER,
+    PRICE_FILTER,
+    SORT: { HIGH_TO_LOW, LOW_TO_HIGH },
+    GENDER: { MEN, WOMEN },
+    CATEGORIES: {
+      TSHIRTS,
+      REMOVE_TSHIRTS,
+      SHIRTS,
+      REMOVE_SHIRTS,
+      DRESSES,
+      REMOVE_DRESSES,
+      JACKETS,
+      REMOVE_JACKETS,
+      PANTS,
+      REMOVE_PANTS,
+    },
+    CLEAR_ALL_FILTERS,
+  },
+} = actionTypes;
 const filterReducer = (givenState, action) => {
   switch (action.type) {
-    case "LOW-TO-HIGH":
+    case LOW_TO_HIGH:
       return { ...givenState, sortPriceOrder: "Low To High" };
-    case "HIGH-TO-LOW":
+    case HIGH_TO_LOW:
       return { ...givenState, sortPriceOrder: "High To Low" };
-    case "MEN":
+    case MEN:
       return { ...givenState, gender: "Men" };
-    case "WOMEN":
+    case WOMEN:
       return { ...givenState, gender: "Women" };
-    case "TSHIRTS":
+    case TSHIRTS:
       return {
         ...givenState,
         categories: !givenState.categories.includes("Tshirts")
           ? [...givenState.categories, "Tshirts"]
           : [...givenState.categories],
       };
-    case "REMOVE-TSHIRTS":
+    case REMOVE_TSHIRTS:
       return {
         ...givenState,
         categories: givenState.categories.filter(
           (everyCategory) => everyCategory !== "Tshirts"
         ),
       };
-    case "SHIRTS":
+    case SHIRTS:
       return {
         ...givenState,
         categories: !givenState.categories.includes("Shirts")
           ? [...givenState.categories, "Shirts"]
           : [...givenState.categories],
       };
-    case "REMOVE-SHIRTS":
+    case REMOVE_SHIRTS:
       return {
         ...givenState,
         categories: givenState.categories.filter(
           (everyCategory) => everyCategory !== "Shirts"
         ),
       };
-    case "DRESSES":
+    case DRESSES:
       return {
         ...givenState,
         categories: !givenState.categories.includes("Dresses")
           ? [...givenState.categories, "Dresses"]
           : [...givenState.categories],
       };
-    case "REMOVE-DRESSES":
+    case REMOVE_DRESSES:
       return {
         ...givenState,
         categories: givenState.categories.filter(
           (everyCategory) => everyCategory !== "Dresses"
         ),
       };
-    case "JACKETS":
+    case JACKETS:
       return {
         ...givenState,
         categories: !givenState.categories.includes("Jackets and Coats")
           ? [...givenState.categories, "Jackets and Coats"]
           : [...givenState.categories],
       };
-    case "REMOVE-JACKETS":
+    case REMOVE_JACKETS:
       return {
         ...givenState,
         categories: givenState.categories.filter(
           (everyCategory) => everyCategory !== "Jackets and Coats"
         ),
       };
-    case "PANTS":
+    case PANTS:
       return {
         ...givenState,
         categories: !givenState.categories.includes("Casual Pants")
           ? [...givenState.categories, "Casual Pants"]
           : [...givenState.categories],
       };
-    case "REMOVE-PANTS":
+    case REMOVE_PANTS:
       return {
         ...givenState,
         categories: givenState.categories.filter(
           (everyCategory) => everyCategory !== "Casual Pants"
         ),
       };
-    case "CLEAR-ALL":
+    case CLEAR_ALL_FILTERS:
       return { ...initialFilterState };
-    case "RATING-CHOICE":
+    case RATINGS_FILTER:
       return {
         ...givenState,
         startRatings: `${action.startValue}`,
         endRatings: `${action.endValue}`,
       };
-    case "PRICE-SLIDE":
+    case PRICE_FILTER:
       return { ...givenState, priceLimit: `${action.payload}` };
     default:
       return { ...givenState };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuthentication } from "context";
-import { initialSignupData, RightIndicator } from "constants";
+import { initialSignupData, RightIndicator, routes } from "constants";
 import { useDocumentTitle } from "hooks";
 import "./authentication.css";
 
@@ -9,6 +9,7 @@ const SignUp = () => {
   const { signUpActionHandler } = useAuthentication();
   const [signupData, setSignupData] = useState(initialSignupData);
   useDocumentTitle();
+  const { SIGNIN_ROUTE } = routes;
   const signupDataHandler = (e) => {
     const { name, value } = e.target;
     setSignupData((prevSignupData) => ({ ...prevSignupData, [name]: value }));
@@ -110,7 +111,7 @@ const SignUp = () => {
               CREATE NEW ACCOUNT
             </button>
             <Link
-              to="/signin"
+              to={SIGNIN_ROUTE}
               className="link-none btn btn-link gentle-flex flex-align-center"
             >
               Already have an Account? Sign In

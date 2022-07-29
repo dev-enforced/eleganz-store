@@ -7,6 +7,7 @@ import React, {
 } from "react";
 import { useSearchParams } from "react-router-dom";
 import { initialFilterState, filterReducer } from "reducers";
+import { actionTypes } from "constants";
 import {
   cumulativeFilters,
   applyCategoryChoice,
@@ -14,7 +15,7 @@ import {
   applyRatingsChoice,
   applyGenderChoice,
   applySortingChoice,
-} from "utilities/filterUtilities";
+} from "utilities";
 import { loadProductsAndCategories } from "services";
 const ProductContext = createContext();
 const useProducts = () => useContext(ProductContext);
@@ -28,7 +29,9 @@ const ProductProvider = ({ children }) => {
     filterReducer,
     initialFilterState
   );
-
+  const {
+    FILTERS: { CLEAR_ALL_FILTERS },
+  } = actionTypes;
   useEffect(() => {
     const productAndCategoryAPIResponse = loadProductsAndCategories();
     productAndCategoryAPIResponse.then((data) => {
@@ -40,9 +43,9 @@ const ProductProvider = ({ children }) => {
   useEffect(() => {
     filterDispatch({ type: `${categoryReceived}` });
     return () => {
-      filterDispatch({ type: "CLEAR-ALL" });
+      filterDispatch({ type: CLEAR_ALL_FILTERS });
     };
-  }, [categoryReceived]);
+  }, [categoryReceived, CLEAR_ALL_FILTERS]);
   const newProducts = cumulativeFilters(
     applyPriceChoice,
     applySortingChoice,

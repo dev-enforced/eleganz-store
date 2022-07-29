@@ -1,7 +1,9 @@
+import { routes } from "constants";
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Wishlist.css";
 const EmptyWishlist = () => {
+  const { PRODUCTS_ROUTE } = routes;
   return (
     <section className="empty-wishlist-content flex-column flex-center">
       <div className="wishlist-info-container flex-column flex-justify-center p-10">
@@ -12,7 +14,7 @@ const EmptyWishlist = () => {
           <p>Let{`'`}s add your favourite items inside it.</p>
         </div>
         <div className="text-center flex-column gentle-flex-gap">
-          <Link to="/products" className="link-none btn btn-outline">
+          <Link to={PRODUCTS_ROUTE} className="link-none btn btn-outline">
             BROWSE PRODUCTS
           </Link>
         </div>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useProducts } from "context/ProductContext";
 import "./FilterSidebar.css";
+import { actionTypes } from "constants";
 
 const FilterSidebar = () => {
   const [mobileFilterView, setMobileFilterView] = useState(false);
@@ -13,6 +14,27 @@ const FilterSidebar = () => {
     endRatings,
     priceLimit,
   } = filterState;
+  const {
+    FILTERS: {
+      RATINGS_FILTER,
+      PRICE_FILTER,
+      SORT: { HIGH_TO_LOW, LOW_TO_HIGH },
+      GENDER: { MEN, WOMEN },
+      CATEGORIES: {
+        TSHIRTS,
+        REMOVE_TSHIRTS,
+        SHIRTS,
+        REMOVE_SHIRTS,
+        DRESSES,
+        REMOVE_DRESSES,
+        JACKETS,
+        REMOVE_JACKETS,
+        PANTS,
+        REMOVE_PANTS,
+      },
+      CLEAR_ALL_FILTERS,
+    },
+  } = actionTypes;
   return (
     <aside className="filter-sidebar-container p-10">
       <div className="filter-sidebar-content gentle-flex-gap flex-column">
@@ -27,7 +49,7 @@ const FilterSidebar = () => {
           <h3
             className="txt-xs clear-filter"
             onClick={() => {
-              filterDispatch({ type: "CLEAR-ALL" });
+              filterDispatch({ type: CLEAR_ALL_FILTERS });
             }}
           >
             CLEAR ALL
@@ -46,7 +68,7 @@ const FilterSidebar = () => {
               name="sort-price"
               checked={sortPriceOrder === "Low To High"}
               onChange={() => {
-                filterDispatch({ type: "LOW-TO-HIGH" });
+                filterDispatch({ type: LOW_TO_HIGH });
               }}
             />
             <label htmlFor="low-to-high">LOW TO HIGH</label>
@@ -58,7 +80,7 @@ const FilterSidebar = () => {
               name="sort-price"
               checked={sortPriceOrder === "High To Low"}
               onChange={() => {
-                filterDispatch({ type: "HIGH-TO-LOW" });
+                filterDispatch({ type: HIGH_TO_LOW });
               }}
             />
             <label htmlFor="high-to-low">HIGH TO LOW</label>
@@ -78,8 +100,8 @@ const FilterSidebar = () => {
               checked={categories.includes("Tshirts")}
               onChange={(e) =>
                 e.target.checked
-                  ? filterDispatch({ type: "TSHIRTS" })
-                  : filterDispatch({ type: "REMOVE-TSHIRTS" })
+                  ? filterDispatch({ type: TSHIRTS })
+                  : filterDispatch({ type: REMOVE_TSHIRTS })
               }
             />
             <label htmlFor="Tshirts">Tshirts</label>
@@ -92,8 +114,8 @@ const FilterSidebar = () => {
               checked={categories.includes("Shirts")}
               onChange={(e) =>
                 e.target.checked
-                  ? filterDispatch({ type: "SHIRTS" })
-                  : filterDispatch({ type: "REMOVE-SHIRTS" })
+                  ? filterDispatch({ type: SHIRTS })
+                  : filterDispatch({ type: REMOVE_SHIRTS })
               }
             />
             <label htmlFor="Shirts">Shirts</label>
@@ -106,8 +128,8 @@ const FilterSidebar = () => {
               checked={categories.includes("Jackets and Coats")}
               onChange={(e) =>
                 e.target.checked
-                  ? filterDispatch({ type: "JACKETS" })
-                  : filterDispatch({ type: "REMOVE-JACKETS" })
+                  ? filterDispatch({ type: JACKETS })
+                  : filterDispatch({ type: REMOVE_JACKETS })
               }
             />
             <label htmlFor="Jackets">Jackets and Coats</label>
@@ -120,8 +142,8 @@ const FilterSidebar = () => {
               checked={categories.includes("Dresses")}
               onChange={(e) =>
                 e.target.checked
-                  ? filterDispatch({ type: "DRESSES" })
-                  : filterDispatch({ type: "REMOVE-DRESSES" })
+                  ? filterDispatch({ type: DRESSES })
+                  : filterDispatch({ type: REMOVE_DRESSES })
               }
             />
             <label htmlFor="Dresses">Dresses</label>
@@ -134,8 +156,8 @@ const FilterSidebar = () => {
               checked={categories.includes("Casual Pants")}
               onChange={(e) =>
                 e.target.checked
-                  ? filterDispatch({ type: "PANTS" })
-                  : filterDispatch({ type: "REMOVE-PANTS" })
+                  ? filterDispatch({ type: PANTS })
+                  : filterDispatch({ type: REMOVE_PANTS })
               }
             />
             <label htmlFor="Pants">Casual Pants</label>
@@ -154,7 +176,7 @@ const FilterSidebar = () => {
               name="worn-by"
               checked={gender === "Men"}
               onChange={() => {
-                filterDispatch({ type: "MEN" });
+                filterDispatch({ type: MEN });
               }}
             />
             <label htmlFor="men-garments">Men</label>
@@ -166,7 +188,7 @@ const FilterSidebar = () => {
               name="worn-by"
               checked={gender === "Women"}
               onChange={() => {
-                filterDispatch({ type: "WOMEN" });
+                filterDispatch({ type: WOMEN });
               }}
             />
             <label htmlFor="women-garments">Women</label>
@@ -186,7 +208,7 @@ const FilterSidebar = () => {
               checked={startRatings === "3" && endRatings === "4"}
               onChange={() => {
                 filterDispatch({
-                  type: "RATING-CHOICE",
+                  type: RATINGS_FILTER,
                   startValue: "3",
                   endValue: "4",
                 });
@@ -202,7 +224,7 @@ const FilterSidebar = () => {
               checked={startRatings === "4" && endRatings === "5"}
               onChange={() => {
                 filterDispatch({
-                  type: "RATING-CHOICE",
+                  type: RATINGS_FILTER,
                   startValue: "4",
                   endValue: "5",
                 });
@@ -221,7 +243,7 @@ const FilterSidebar = () => {
             className="price-point-viewer"
             value={priceLimit}
             onChange={(e) =>
-              filterDispatch({ type: "PRICE-SLIDE", payload: e.target.value })
+              filterDispatch({ type: PRICE_FILTER, payload: e.target.value })
             }
             type="range"
             min="500"

@@ -2,17 +2,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useAuthentication } from "context";
 import { Search, CartIcon, WishlistIcon } from "constants";
+import { routes } from "constants";
 import "./Navigation.css";
+
 const Navigation = () => {
   const { authState, signOutActionHandler } = useAuthentication();
   const { signinStatus, cart, wishlist } = authState;
-  console.log(signinStatus);
+  const { HOME_ROUTE, SIGNIN_ROUTE, CART_ROUTE, WISHLIST_ROUTE } = routes;
   return (
     <nav className="main-nav-wrapper">
       <div className="main-container gentle-flex-gap flex-align-center flex-wrap">
         <div className="main-image-and-input-container gentle-flex-gap flex-align-center flex-wrap">
           <div className="main-image-container">
-            <Link to="/">
+            <Link to={HOME_ROUTE}>
               <img
                 src="./assets/eleganz-logo.png"
                 alt="Eleganz Logo"
@@ -40,11 +42,11 @@ const Navigation = () => {
               LOGOUT
             </button>
           ) : (
-            <Link to="/signin" className="link-none text-link">
+            <Link to={SIGNIN_ROUTE} className="link-none text-link">
               LOGIN
             </Link>
           )}
-          <Link to="/cart" className="badge mx-2">
+          <Link to={CART_ROUTE} className="badge mx-2">
             <CartIcon className="icon-link link-none" />
             {signinStatus && cart.length > 0 ? (
               <div className="badge-number gentle-flex-center">
@@ -54,7 +56,7 @@ const Navigation = () => {
               ""
             )}
           </Link>
-          <Link to="/wishlist" className="badge mx-2">
+          <Link to={WISHLIST_ROUTE} className="badge mx-2">
             <WishlistIcon className="icon-link link-none" />
             {signinStatus && wishlist.length > 0 ? (
               <div className="badge-number gentle-flex-center">

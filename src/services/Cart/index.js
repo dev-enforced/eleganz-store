@@ -1,3 +1,4 @@
-export { addToCart } from "./addToCart";
-export { quantityUpdate } from "./updateItemQuantity";
-export { removeProductFromCart } from "./removeFromCart";
+export * from "./addItemToCartService";
+export * from "./updateItemQuantityService";
+export * from "./removeProductFromCartService";
+export * from "./clearWholeCartService";

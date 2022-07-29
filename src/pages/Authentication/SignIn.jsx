@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { initialsignInData, guestCredentials, RightIndicator } from "constants";
+import {
+  initialsignInData,
+  guestCredentials,
+  RightIndicator,
+  routes,
+} from "constants";
 import { useAuthentication } from "context";
 import { useDocumentTitle } from "hooks";
 import "./authentication.css";
@@ -8,6 +13,7 @@ import "./authentication.css";
 const SignIn = () => {
   const { signInActionHandler } = useAuthentication();
   const [signinData, setSigninData] = useState(initialsignInData);
+  const { HOME_ROUTE, SIGNUP_ROUTE } = routes;
   const signInDataHandler = (e) => {
     const { name, value } = e.target;
     setSigninData((prevSigninData) => ({ ...prevSigninData, [name]: value }));
@@ -69,7 +75,7 @@ const SignIn = () => {
               <span>Remember Me</span>
             </label>
             <div className="forget-password">
-              <Link to="/" className="link-none">
+              <Link to={HOME_ROUTE} className="link-none">
                 {" "}
                 Forgot Password?{" "}
               </Link>
@@ -92,7 +98,7 @@ const SignIn = () => {
               SIGN IN AS GUEST
             </button>
             <Link
-              to="/signup"
+              to={SIGNUP_ROUTE}
               className="link-none gentle-flex flex-align-center"
             >
               Create New Account

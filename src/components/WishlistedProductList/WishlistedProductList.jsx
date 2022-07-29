@@ -1,12 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuthentication } from "context";
-import { addToCart, removeItemFromWishlist } from "services";
 import { CartOutline, HeartOutline } from "constants";
+import { routes } from "constants";
 import "./WishlistedProductList.css";
 
 const WishlistedProductList = () => {
-  const { authState, authDispatch } = useAuthentication();
+  const { authState, addItemToCartAction, removeItemFromWishlistAction } =
+    useAuthentication();
+  const { CART_ROUTE } = routes;
   const { cart: cartProvided, wishlist: wishlistProvided } = authState;
   return (
     <section className="gentle-grid-responsive py-8">
@@ -48,7 +50,7 @@ const WishlistedProductList = () => {
                 (everyCartItem) => everyCartItem._id === _id
               ) ? (
                 <Link
-                  to="/cart"
+                  to={CART_ROUTE}
                   className="link-none btn btn-warning btn-warning-hover gentle-flex-gap flex-align-center"
                 >
                   GO TO CART <CartOutline />
@@ -57,7 +59,7 @@ const WishlistedProductList = () => {
                 <button
                   className="btn btn-warning btn-warning-hover gentle-flex-gap flex-align-center"
                   onClick={() => {
-                    addToCart(authState, authDispatch, everyItem);
+                    addItemToCartAction(everyItem);
                   }}
                 >
                   ADD TO CART <CartOutline />
@@ -65,7 +67,7 @@ const WishlistedProductList = () => {
               )}
               <button
                 onClick={() => {
-                  removeItemFromWishlist(everyItem, authDispatch, authState);
+                  removeItemFromWishlistAction(everyItem);
                 }}
                 className="btn btn-outline text-center link-none"
                 href="#"
